@@ -1,10 +1,21 @@
 describe("my calculator tests", function () {
+    var p ; //Personne à tester
     
     beforeEach(function () {
      console.log("initialisation : new ... or ..." );
+     p = new Personne("toto",25);
     });
 	
+    it("27ans apres 2 incrementerAge",function(){
+        p.incrementerAge(); p.incrementerAge();
+        expect(p.age).toBe(27);
+    })
 
+    it("le nom de p est toto" , function(){
+       expect(p.nom).toBe("toto");
+    });
+
+    
     it("2+3==5?", function () {
          expect(calculerOp('+',2,3)).toBe(5);
     });
@@ -18,13 +29,7 @@ describe("my calculator tests", function () {
          expect(calculerOp('/',8,4)).toBe(2);
     });
 	
-	it("racine carre de 9 vaut bien 3", function () {
-         expect(racineCarree(9)).toBe(3);
-    });
-
-    it("la moitie de 32 vaut elle bien 16", function () {
-        expect(moitie(32)).toBe(16);
-   });
+	
 	
 	
             
