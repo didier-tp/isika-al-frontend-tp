@@ -1,3 +1,5 @@
+"use strict";
+
 function Produit(label, prix){
     this.label=label;
     this.prix=prix;
@@ -20,8 +22,8 @@ function moyennePrixDesProduits(tabProduits){
     if(tabProduits==undefined  || tabProduits.length == 0)
        return 0;
     /* else */
-    var s = 0;
-    for(i in tabProduits)
+    let s = 0;
+    for(let i in tabProduits)
        s+=tabProduits[i].prix;
     return s / tabProduits.length;
 }
@@ -33,7 +35,7 @@ console.log("moyenne des prix des produits="+m); //exemple: 2.131
 var produitLePlusCher;
 var prixLePlusEleve=-1;
 var indiceProduitLePlusCher;
-for(i in tabProduits){
+for(let i in tabProduits){
     if(tabProduits[i].prix > prixLePlusEleve){
         produitLePlusCher=tabProduits[i];
         indiceProduitLePlusCher=i;
