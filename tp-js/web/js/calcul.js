@@ -11,7 +11,7 @@ function calculerOp(op,a,b){
 	}
 	return res;
 }	
-
+//racineCarre de 9 vaut normalement 3
 function racineCarree(x){
 	//x = Number(x);
 	return Math.sqrt(x);
@@ -22,4 +22,15 @@ function racineCarree(x){
 //la moitie de 10 vaut 5
 function moitie(x){
 	return x/2;
+}
+
+
+//dans beforeEach , contruire une instance
+//new Personne("toto",25);
+function Personne(nom,age){
+	this.nom=nom;
+	this.age=age;
+	this.incrementerAge=function(){
+		this.age++;
+	}
 }

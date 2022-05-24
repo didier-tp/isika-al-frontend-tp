@@ -29,7 +29,9 @@ function affTabAssociatif(tab){
 
 //fonction qui ajoute les options (sélections possible) dans la liste html:
 function initSelProd(){
-	var eltSelProd = document.getElementById("selProd");
+	//var eltSelProd = document.getElementById("selProd");
+	var eltSelProd = document.querySelector("#selProd"); //meme syntaxe que selecteur css
+	//document.querySelectorAll() existe egalement
 	for(let refProd in mapProduitsByRef){
 		var eltOption = document.createElement("option");
 		eltOption.innerText=mapProduitsByRef[refProd].label;

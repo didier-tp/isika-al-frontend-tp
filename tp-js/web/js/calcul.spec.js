@@ -1,15 +1,7 @@
 describe("my calculator tests", function () {
-    var detector;
-	var compteur=0;
-	
-	beforeAll(function () {
-     console.log("beforeAll()" );
-    });
-
+    
     beforeEach(function () {
      console.log("initialisation : new ... or ..." );
-	 detector = 0;
-	 compteur++;
     });
 	
 
@@ -34,8 +26,6 @@ describe("my calculator tests", function () {
         expect(moitie(32)).toBe(16);
    });
 	
-	afterAll( function(){
-		expect(compteur).toBe(6);
-	});
+	
             
 });
