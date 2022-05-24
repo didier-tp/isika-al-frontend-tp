@@ -9,6 +9,12 @@ function Produit(label, prix){
 }
 
 var produit1 = new Produit("cahier",2.45);
+
+var p1AsJsonString = JSON.stringify(produit1);
+console.log("p1AsJsonString="+p1AsJsonString);
+var cloneDeProduit1 = JSON.parse(p1AsJsonString);
+console.log(cloneDeProduit1.label + " " + cloneDeProduit1.prix);
+
 produit1.ajusterPrix(1.1); //+10%
 console.log(JSON.stringify(produit1));//{"label":"cahier","prix":2.695}
 
