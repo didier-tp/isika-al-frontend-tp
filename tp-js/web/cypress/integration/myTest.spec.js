@@ -6,7 +6,7 @@ describe('My HTML/JS Tests', () => {
   
       //cliquer sur le lien comportant 'calculatriceV3'
       cy.contains('calculatriceV3').click()
-      cy.wait(50)
+      //cy.wait(50)
       // Should be on a new URL which includes '/calculatrice'
       cy.url().should('include', '/calculatrice')
   
