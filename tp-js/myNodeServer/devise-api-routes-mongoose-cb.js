@@ -2,6 +2,9 @@
 import express from 'express';
 const apiRouter = express.Router();
 
+//NB: les api axios ou fetch servent à appeler des WS REST avec des Promises
+//const axios = require('axios'); 
+import axios from 'axios';// npm install -s axios
 
 //var devise_dao_mongoose = require('./devise-dao-mongoose-cb.js');
 import devise_dao_mongoose from './devise-dao-mongoose-cb.js';
@@ -13,6 +16,15 @@ devise_dao_mongoose.initMongooseWithSchemaAndModel(
 		PersistentDeviseModel=InitializedPersistentDeviseModel
 	}
 );
+
+//exemple URL: http://localhost:8282/devise-api/private/reinit
+apiRouter.route('/devise-api/private/reinit')
+.get( function(req , res  , next ) {
+	devise_dao_mongoose.init_devise_db(PersistentDeviseModel,
+		function (doneAction){
+	      res.send(doneAction)
+	  });
+});
 
 //exemple URL: http://localhost:8282/devise-api/public/devise/EUR
 apiRouter.route('/devise-api/public/devise/:code')
@@ -122,6 +134,70 @@ apiRouter.route('/devise-api/private/role-admin/devise/:code')
 				 res.send({ deletedDeviseCode : codeDevise } );
 		 });
 });
+
+//*************************** appel du web service REST data.fixer.io
+//*************************** pour actualiser les taux de change dans la base de données
+
+
+
+function callFixerIoWebServiceWithAxios(callbackWithDataAndError){
+
+	//URL du web service a appeler:
+	let  wsUrl = "http://data.fixer.io/api/latest?access_key=26ca93ee7fc19cbe0a423aaa27cab235" 
+	//ici avec api-key de didier
+
+	//type de réponse attendue:
+	/*
+	{"success":true,"timestamp":1635959583,"base":"EUR","date":"2021-11-03",
+	"rates":{"AED":4.254663,"AFN":105.467869,..., "EUR":1 , ...}}
+	*/
+
+	axios.get(wsUrl)
+	.then( (response) => {
+		console.log("fixer.io response: " + JSON.stringify(response.data));
+		if(response.status==200)
+			callbackWithDataAndError(response.data,null);
+		else
+			callbackWithDataAndError(null,{ err : "error - "});
+		})
+	.catch((error) => {callbackWithDataAndError(null,{ err : "error - " + error});});
+}
+
+//http://localhost:8282/devise-api/private/refresh
+apiRouter.route('/devise-api/private/refresh')
+.get( function(req , res  , next ) {
+	callFixerIoWebServiceWithAxios(function(respData,err){
+		if(err) {
+			console.error(JSON.stringify(err));
+			res.status(500).send(err);//technical error
+			return;
+		  }
+		if(respData && respData.success){
+			//refresh database values:
+			let newRates = respData.rates;
+			//console.log("newRates="+newRates);
+			for(let deviseKey in newRates){
+				let deviseRate = newRates[deviseKey];
+				//console.log(deviseKey + "-" + deviseRate);
+				let devise = { code : deviseKey , change : deviseRate};
+				switch(deviseKey){
+					case "USD" : devise.nom = "Dollar"; break;
+					case "JPY" : devise.nom = "Yen"; break;
+					case "GBP" : devise.nom = "Livre"; break;
+					default : devise = null;
+				}
+				if(devise!=null){
+					const filter = { _id : devise.code }
+					PersistentDeviseModel.updateOne( filter , devise,
+						function(dbErr,opResultObject){
+							console.log(JSON.stringify(opResultObject))									
+						});	//end of updateOne()
+					}
+			}//end of for()
+		} //end of if(respData.success)
+		res.status(200).send(respData); //return / forward fixer.io results/response to say ok
+	}); // end of callFixerIoWebServiceWithAxios callback
+});//end of refresh route
 
 //module.exports.apiRouter = apiRouter; //ancienne syntaxe common-js
 export { apiRouter }; //syntaxe module es2015

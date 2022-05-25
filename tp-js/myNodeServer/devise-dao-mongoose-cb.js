@@ -37,9 +37,7 @@ var initMongooseWithSchemaAndModel = function(callbackWithPersistentDeviseModel)
 }
 
 
-function init_devise_db(){
-  initMongooseWithSchemaAndModel(
-    function(PersistentDeviseModel) {
+function init_devise_db(PersistentDeviseModel,callbackWithAction){
       const deleteAllFilter = { }
       PersistentDeviseModel.deleteMany( deleteAllFilter, function (err) {
         if(err) console.log(JSON.stringify(err));
@@ -48,7 +46,7 @@ function init_devise_db(){
         (new PersistentDeviseModel({ code : "USD" , nom : "Dollar" , change : 1.1})).save();
         (new PersistentDeviseModel({ code : "GBP" , nom : "Livre" , change : 0.9})).save();
         (new PersistentDeviseModel({ code : "JPY" , nom : "Yen" , change : 123.7})).save();
-      })
+        callbackWithAction({action:"devises collection re-initialized in mongoDB database"})
   });
 }
 
