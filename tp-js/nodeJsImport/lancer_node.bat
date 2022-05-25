@@ -1,0 +1,4 @@
+node basic_exemple_with_modules.js
+node basic_exemple_with_modules_v2.js
+node basic_exemple_with_modules_v3_withGlobalImport.js
+pause
