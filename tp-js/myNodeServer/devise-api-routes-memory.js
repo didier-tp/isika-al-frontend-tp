@@ -46,7 +46,10 @@ apiRouter.route('/devise-api/public/devise/:code')
 .get( function(req , res  , next ) {
 	var codeDevise = req.params.code;
 	var devise = findDeviseInArrayByCode(allDevises,codeDevise);
-	res.send(devise);
+	if(devise==null)
+	  res.status(404).json({message:"devise inconnue pour code="+codeDevise});
+	else
+	  res.send(devise);
 });
 
 //exemple URL: http://localhost:8282/devise-api/public/devise (returning all devises)
