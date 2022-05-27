@@ -1,8 +1,10 @@
 //var express = require('express');
 import express from 'express';
 import * as produitApiRoutes from './produit-api-routes-memory.js';
-import * as deviseApiRoutes from './devise-api-routes-memory.js';
+//var deviseApiRoutes = require('devises-api-routes-partiel')
+//import * as deviseApiRoutes from './devise-api-routes-memory.js';
 //import * as deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
+import * as deviseApiRoutes from './devise-api-routes-partiel.js';
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';

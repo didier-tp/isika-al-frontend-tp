@@ -28,7 +28,7 @@ apiRouter.route('/devise-api/private/reinit')
 
 //exemple URL: http://localhost:8282/devise-api/public/devise/EUR
 apiRouter.route('/devise-api/public/devise/:code')
-.get( function(req , res  , next ) {
+.get( async function(req , res  , next ) {
 	var codeDevise = req.params.code;
 	PersistentDeviseModel.findById( codeDevise ,
 					function(err,devise){
@@ -38,6 +38,7 @@ apiRouter.route('/devise-api/public/devise/:code')
 					       res.send(devise);
 				    });
 });
+
 
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
@@ -79,6 +80,7 @@ apiRouter.route('/devise-api/public/devise')
 	PersistentDeviseModel.find(criteria,function(err,devises){
 		   if(err) {
 			   console.log("err="+err);
+               res.status(500).json({err:"erreur"});
 	       }
 		   res.send(devises);
 	});//end of find()
@@ -198,6 +200,7 @@ apiRouter.route('/devise-api/private/refresh')
 		res.status(200).send(respData); //return / forward fixer.io results/response to say ok
 	}); // end of callFixerIoWebServiceWithAxios callback
 });//end of refresh route
+
 
 //module.exports.apiRouter = apiRouter; //ancienne syntaxe common-js
 export { apiRouter }; //syntaxe module es2015

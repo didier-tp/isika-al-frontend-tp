@@ -1,15 +1,21 @@
 //var mongoose = require('mongoose');  
 import mongoose from 'mongoose';// npm install -s mongoose
 
+//process.env.MONGO_DB_URL recupére la valeur de la variable d'environnement
+//MONGO_DB_URL si elle existe
+//set MONGO_DB_URL=mongodb://localhost:27017 sous windows (dans .bat)
+//export MONGO_DB_URL=mongodb://localhost:27017 sous linux ou mac (dans .sh)
 var mongoDbUrl = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017'; //by default
-
+// url: mongodb://username:password@serverName:numeroPort
+//var mongoDbUrl = process.env.MONGO_DB_URL || 'mongodb://superuser:motdepasse@127.0.0.1:27017'
 var deviseSchema;//mongoose Shcema (structure of mongo document)
 var PersistentDeviseModel; //mongoose Model (constructor of persistent PersistentDeviseModel)
 
 var initMongooseWithSchemaAndModel = function(callbackWithPersistentDeviseModel) {
     mongoose.connect(mongoDbUrl, {useNewUrlParser: true, 
+                                /*user: "username_telque_superuser" , pass : "motdepasse",*/
 	                              useUnifiedTopology: true , 
-								  dbName : 'test'});
+								  dbName : 'devise_db'});//équivalent à "use devise_db" de mongo_shell
     const db = mongoose.connection;
     db.on('error' , function() { 
 	     console.log("mongoDb connection error = " + 
@@ -44,7 +50,7 @@ function init_devise_db(PersistentDeviseModel,callbackWithAction){
         //insert elements after deleting olds
         (new PersistentDeviseModel({ code : "EUR" , nom : "Euro" , change : 1.0})).save();
         (new PersistentDeviseModel({ code : "USD" , nom : "Dollar" , change : 1.1})).save();
-        (new PersistentDeviseModel({ code : "GBP" , nom : "Livre" , change : 0.9})).save();
+        (new PersistentDeviseModel({ code : "GBP" , nom : "Livre" , change : 0.9961})).save();
         (new PersistentDeviseModel({ code : "JPY" , nom : "Yen" , change : 123.7})).save();
         callbackWithAction({action:"devises collection re-initialized in mongoDB database"})
   });
@@ -83,6 +89,7 @@ function getDeviseByCode(codeDevise){
 }
 */
 
-
+//module.exports.initMongooseWithSchemaAndModel = initMongooseWithSchemaAndModel;
+//module.exports.init_devise_db = init_devise_db;
 export default { initMongooseWithSchemaAndModel , init_devise_db }
 //export { initMongooseWithSchemaAndModel , init_devise_db , getDeviseByCriteria , getDeviseByCode}
