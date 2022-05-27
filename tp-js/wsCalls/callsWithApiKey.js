@@ -47,12 +47,36 @@ for account(didierdefrance, didier@d-defrance.fr , .....2.)
      const response  = await axios.get(wsUrl);
    console.log("\n https://api.themoviedb.org/3/genre/movie/list response:", + response.status);
      console.log("response.status : ", + response.status);
-     console.log("response.data : " + JSON.stringify(response.data));
+     //console.log("response.data : " + JSON.stringify(response.data));
+     let responseData = response.data;
+     for(let genreIndex in responseData.genres ){
+        subCallDicoverMoviesByGenre(
+              responseData.genres[genreIndex].id,
+              responseData.genres[genreIndex].name);
+     }
+
   }catch(ex){
     console.log("ex : " + ex);
   }
 }
 
+async function subCallDicoverMoviesByGenre(genreId,genreName){
+  let year=2022;
+  let apiKey = "861b3deeac81ccfcadd33282456a499c";
+  let  wsUrl = `https://api.themoviedb.org/3/discover/movie?year=${year}&with_genres=${genreId}&api_key=${apiKey}` 
+  try{
+    const response  = await axios.get(wsUrl);
+  console.log("\n list of movies for year=2022&with_genres="+genreName);
+    //console.log(JSON.stringify(response.data));
+    let responseData = response.data;
+    for(let i in responseData.results ){
+      console.log(responseData.results[i].original_title);
+   }
+ }catch(ex){
+   console.log("ex : " + ex);
+ }
+}
 
-callWithApiKeyInUrl();
+
+//callWithApiKeyInUrl();
 callWithApiKeyInUrl2();
