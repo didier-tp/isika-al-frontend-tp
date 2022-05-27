@@ -6,7 +6,7 @@ const apiRouter = express.Router();
 //const axios = require('axios'); 
 import axios from 'axios';// npm install -s axios
 
-//var devise_dao_mongoose = require('./devise-dao-mongoose-cb.js');
+//var devise_dao_mongoose = require('./devise-dao-mongoose-cb');
 import devise_dao_mongoose from './devise-dao-mongoose-cb.js';
 
 
