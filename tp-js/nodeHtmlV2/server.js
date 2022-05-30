@@ -13,7 +13,7 @@ app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
 
-app.use(express.static(__dirname+'/views/assets'))
+app.use(express.static(__dirname+'/assets'))
 
 app.get('/', function(req , res ) {
   res.redirect('/server-home');
