@@ -119,4 +119,5 @@ apiRouter.route('/produit-api/private/role-admin/produit/:code')
     }
 });
 
-export { apiRouter };
+//export { apiRouter };//pour import * as produitApiRoutes from './produit-api-routes-memory.js';
+export default { apiRouter };//pour import produitApiRoutes from './produit-api-routes-memory.js';

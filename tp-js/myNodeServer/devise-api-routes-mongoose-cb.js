@@ -200,4 +200,5 @@ apiRouter.route('/devise-api/private/refresh')
 });//end of refresh route
 
 //module.exports.apiRouter = apiRouter; //ancienne syntaxe common-js
-export { apiRouter }; //syntaxe module es2015
+//export { apiRouter }; //pour import * as deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
+export default { apiRouter }; //pour import deviseApiRoutes from './devise-api-routes-mongoose-cb.js';

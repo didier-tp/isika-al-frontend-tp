@@ -42,3 +42,21 @@ async function callNinjaCatFact(){
 
 badCallWrongUrl();
 callNinjaCatFact();
+
+/*
+Autres exemples:
+
+
+http://api.zippopotam.us/fr/75001
+renvoyant:
+{"post code": "75001", "country": "France", 
+"country abbreviation": "FR", 
+"places": [{"place name": "Paris 01 Louvre", "longitude": "2.3417",
+ "state": "\u00cele-de-France", "state abbreviation": "A8", 
+ "latitude": "48.8592"}]}
+
+
+ https://geo.api.gouv.fr/communes?codePostal=78000
+ renvoyant
+ [{"nom":"Versailles","code":"78646","codeDepartement":"78","codeRegion":"11","codesPostaux":["78000"],"population":84808}]
+ */

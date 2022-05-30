@@ -102,4 +102,5 @@ apiRouter.route('/devise-api/private/role-admin/devise/:code')
 });
 
 
-export { apiRouter };
+//export { apiRouter };//pour import * as deviseApiRoutes from './devise-api-routes-memory.js';
+export default { apiRouter };//pour import as deviseApiRoutes from './devise-api-routes-memory.js';
