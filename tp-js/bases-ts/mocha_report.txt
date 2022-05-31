@@ -1,19 +1,21 @@
+enchainement enregistré - en attente des résultats différés
+enchainement enregistré - en attente des résultats différés
 
 
   MyAsyncSequence tests
-    ✔ account with .num==2 when calling getAccountByNumAfterDelay(2,500) (513ms)
-    ✔ user with .userId==6 when calling getUserByIdAfterDelay(6,500) (511ms)
+    √ account with .num==2 when calling getAccountByNumAfterDelay(2,500) (504ms)
+    √ user with .userId==6 when calling getUserByIdAfterDelay(6,500) (513ms)
 
   my simpleAsync tests
 initialisation : new ... or ...
-    ✔ abc shoud be ABC in upperCase with returned Promise  (512ms)
+    √ abc shoud be ABC in upperCase with returned Promise  (512ms)
 initialisation : new ... or ...
-    ✔ abc shoud be ABC in upperCase with async/await (506ms)
+    √ abc shoud be ABC in upperCase with async/await (514ms)
 
 
   4 passing (2s)
 
 aff err account:invalid account number : 0
 user (owner of account):undefined
-compte:{"num":8,"balance":441.6878913432412,"ownerId":83}
-user (owner of account):{"userId":83,"firstName":"firstName_83","lastName":"lastname83"}
+compte:{"num":8,"balance":506.425949435519,"ownerId":62}
+user (owner of account):{"userId":62,"firstName":"firstName_62","lastName":"lastname62"}

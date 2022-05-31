@@ -5,7 +5,8 @@ initialisation : new ... or ...
     √ 2+3==5?
 initialisation : new ... or ...
     √ 2*3==6?
+cpt=2
 
 
-  2 passing (6ms)
+  2 passing (5ms)
 

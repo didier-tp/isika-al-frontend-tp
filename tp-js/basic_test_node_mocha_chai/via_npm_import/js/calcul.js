@@ -10,9 +10,4 @@ function calculerOp(op,a,b){
 		 return res;
 		}
 
-function calculerOperation(op){
-		  var a =  (document.querySelector("#a")).value;
-		  var b =   document.querySelector("#b").value;  
-		  var res = calculerOp(op,a,b);
-          document.querySelector("#spanRes").innerHTML = res;
-		}
+export default { calculerOp };

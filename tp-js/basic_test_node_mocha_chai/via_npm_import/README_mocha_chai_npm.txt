@@ -6,4 +6,4 @@ npm install --save-dev chai
 --> create test directory
 --> create or copy ...spec.js file in test dir
 mocha
---> run mocha tests
+--> run mocha tests with mocha
