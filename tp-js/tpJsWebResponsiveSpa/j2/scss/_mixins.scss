@@ -1,0 +1,3 @@
+@mixin texte_decore($couleur_texte){
+    color : $couleur_texte; font-weight: bold; text-decoration: underline;
+}

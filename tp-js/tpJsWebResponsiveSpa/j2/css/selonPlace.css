@@ -1,0 +1,57 @@
+  .f-form-group-wrap {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  label.f-align {
+    width: 12em;
+    display: inline-block;
+    margin-left: 0.3em;
+    flex: 0 0 12em;
+  }
+  
+  .f-align {
+    margin-left: 0.3em;
+    flex: 1 1 auto;
+  }
+  
+  .f-max-size {
+    width: 98%;
+  }
+
+/*********************************************/
+
+.myFlexRowNowrap{
+	display : flex;
+	flex-flow : row nowrap;
+}
+
+.flexItem{
+	flex: 1 1 auto;
+}
+
+.maPublicite {
+	width : 250px;
+	margin : 1em;
+	background-color: white;
+	color : red;
+	padding : 1em;
+	border : 1px solid red ;
+}
+
+/* affichage en taille fixe (flex: 0 0 250px) que si ecran d'au moins 1000px de large */ 
+@media screen and (max-width : 1000px){
+	.siPlaceSuffisante {
+		display : none;
+	}
+}
+
+@media screen and (min-width : 1000px){
+
+	.siPlaceSuffisante {
+		display : flex;
+		flex: 0 0 250px;
+	}
+
+}
+

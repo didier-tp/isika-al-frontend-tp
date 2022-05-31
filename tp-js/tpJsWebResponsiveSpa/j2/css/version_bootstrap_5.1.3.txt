@@ -1,0 +1,2 @@
+Bootstrap v5.1.3
+plus de bootstrap 4 et donc pas besoin de jquery

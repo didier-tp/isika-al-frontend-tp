@@ -1,0 +1,5 @@
+Améliorations libres pour terminer.
+idées:
+- relooker certaines parties (ex: calculatrice )
+- dessin temporaire (événement mousemove) sur partie dessin
+- ...

@@ -1,0 +1,69 @@
+a) effets divers à base de transitions et animations css
+*ajouter les fichiers images ....jpg au projet tpJsWebResponsiveSpa (sous répertoire images)
+*ajouter les fichiers sp_effets.html et js/effets.js au projet tpJsWebResponsiveSpa
+* ajouter ceci dans la fonction switchContent de index.html : 
+         case "effets" :
+		loadJsScript("js/effets.js", function(){
+			loadSubPart("idAlternativeSubPart","sp_effets.html","startEffets()")
+		});	break;
+* ajouter ceci (ou bien une adpatation) dans le menu déroulant  de index.html : 
+
+ <a class="dropdown-item" href="#" data-bs-toggle="collapse"
+ data-bs-target=".navbar-collapse.show" 
+onclick="switchContent('effets')">effets divers</a>
+
+* ajouter ceci (ou bien une adpatation) dans sp_welcome.html : 
+
+<input type="button" class="myitem boutonRondCarre" value="effets"
+          onclick="switchContent('effets')" />
+
+* ajouter ceci dans le haut de css/common.css
+
+.mybox {
+  background-color: lightyellow;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.mywrapbox {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.myitem {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 2px;
+  margin: 8px;
+}
+
+.mycell {
+  flex: 1 1 auto;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}    
+
+* en tenant compte des indications entre <pre>....</pre>  se sp_effets.html
+ajouter les classes css manquantes au fichier  css/common.css
+
+===================================================================================
+
+b) contrôles d'animations par code javascript
+
+* au sein du fichier css/common.css , en s'inspirant du code de l'animation/@keyframes flash-anim
+
+coder une autre animation/@keyframes secouer-anim qui fera pivoter plusieurs fois  la chose dans un sens puis dans le sens contraire
+(ex: 10deg et -10deg )
+
+* etudier le code de js/effets.js permettant de déclencher et arrêter cette animation par code javascript 
+* tester le comportment attendu
+
+

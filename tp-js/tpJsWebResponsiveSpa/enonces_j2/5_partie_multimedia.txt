@@ -1,0 +1,22 @@
+(simple TD , exmple)
+*ajouter les sous répertoires audio et video (avec leurs contenus) au projet tpJsWebResponsiveSpa 
+*ajouter les fichiers sp_media.html et js/media.js au projet tpJsWebResponsiveSpa
+* ajouter ceci dans la fonction switchContent de index.html : 
+      case "media" :
+		loadJsScript("js/media.js", function(){
+			loadSubPart("idAlternativeSubPart","sp_media.html","startMedia()")
+		});	break;
+* ajouter ceci (ou bien une adpatation) dans le menu déroulant  de index.html : 
+
+ <a class="dropdown-item" href="#" data-bs-toggle="collapse" 
+data-bs-target=".navbar-collapse.show" 
+onclick="switchContent('media')">media (audio , video)</a>
+
+* ajouter ceci (ou bien une adpatation) dans sp_welcome.html : 
+
+<input type="button" class="myitem boutonRondCarre" value="media"
+          onclick="switchContent('media')" />
+
+* tester la nouvelle partie intégrée .
+* edudier la structure du fichier pour les sous-titre (media/video2-captions.vtt)
+

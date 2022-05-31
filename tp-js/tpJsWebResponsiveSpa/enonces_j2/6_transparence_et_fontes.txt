@@ -1,0 +1,70 @@
+a) effets de transparence et autres effets divers
+*ajouter si besoin les fichiers images ....jpg au projet tpJsWebResponsiveSpa (sous répertoire images)
+*ajouter les fichiers sp_transparence.html et js/transparence.js au projet tpJsWebResponsiveSpa
+* recopier avec-transparence.css et defilement.css dans css du projet tpJsWebResponsiveSpa
+et relier css/avec-transparence.css et  css/defilement.css  à index.html
+* ajouter ceci dans la fonction switchContent de index.html : 
+        case "transparence" :
+		loadJsScript("js/transparence.js", function(){
+			loadSubPart("idAlternativeSubPart","sp_transparence.html","startTransparence()")
+		});	break;
+* ajouter ceci (ou bien une adpatation) dans le menu déroulant  de index.html : 
+
+ <a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+     onclick="switchContent('transparence')">fontes, transparence et autres effets</a>
+
+* ajouter ceci (ou bien une adpatation) dans sp_welcome.html : 
+
+<input type="button" class="myitem boutonRondCarre" value="transparence"
+          onclick="switchContent('transparence')" />
+* tester le comportment de la nouvelle partie intégrée 
+  (sachant que les parties "polices de caractères" n'ont pas encore été paramétrées)
+* étudier le contenu des fichiers ajoutés
+* évenuelles adaptations/amémiorations libres
+
+
+===================================================================================
+
+b) fontes personnalisées et effets sur le texte .
+
+* étudier si besoin exemples/exemples_html_css/page12_fontes.html et/ou docs/html_http_css.pdf
+* recopier le répertoire font (et son contenu) à l'intérieur du répertoire css du projet tpJsWebResponsiveSpa
+* ajouter ceci dans le haut du fichier css/common.css
+ 
+@import 'font/xyz-webfont.css';
+@import 'font/theroots-webfont.css';
+@import 'font/playfair-display-webfont.css';
+
+.withAlluraFont{
+	font-family : alluraregular, Arial ;
+	font-size : 2em;
+}
+
+.withPayfairDisplayFont{
+	font-family : playfair_displayregular, Arial ;
+	font-size : 1.5em;
+}
+
+.acrostiche > p {
+   line-height : 100% 
+}
+
+.acrostiche > p::first-letter {
+	font-family : playfair_displayregular, Arial ;
+	color : red;
+	font-size : 2rem;
+}
+
+.withTheRootsFont{
+	font-family : therootsregular, Arial ;
+	font-size : 2em;
+}
+
+--------------------------------------------------
+c) exercice facultatif :
+
+récupérer une fonte intéressante sur le site https://fonts.google.com
+et l'intégrer quelquepart dans le projet tpJsWebResponsiveSpa
+
+
+

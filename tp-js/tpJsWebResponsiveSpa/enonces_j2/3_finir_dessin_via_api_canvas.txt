@@ -1,0 +1,5 @@
+* étudier la structure de sp_dessin.html
+* lire l'annexe "canvas et chart" de docs/javascript.pdf
+* compléter le code js/dessin.js selon les commentaires "A FAIRE EN TP" .
+* tester le bon fonctionnement de la partie dessin
+* étudier facultativement le code de js/graph.js sachant que chart.js est une surcouche de l'api canvas .

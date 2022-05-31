@@ -1,0 +1,85 @@
+a) preparation
+
+recopier selonPlace.css dans css
+relier css/selonPlace.css à index.html
+
+--------------------------------------------------------------------------------------------------------------------
+
+b) "publicité selon place disponible"
+au sein de la partie <main id="mainContent" ....> de index.html
+remplacer 
+
+<section class="container-fluid">
+     <div id="idAlternativeSubPart">...</div>
+  </section>
+
+par
+
+  <!--  <section class="container-fluid">
+     <div id="idAlternativeSubPart">...</div>
+  </section>
+   -->
+   <div class="myFlexRowNowrap">
+	<section class="flexItem">
+	  <div id="idAlternativeSubPart">...</div>
+	</section>
+	<section class="siPlaceSuffisante">
+			<div class="maPublicite">
+			texte<br/>
+			ou<br/>
+			image <br/>
+			de <br/>
+			pub<br/>
+			...<br/>
+		  </div>
+	</section>
+  </div>
+
+tester et comprendre le comportement en analysant le bas de selonPlace.css
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+c) "alignement formulaire sans bootstrap mais avec flexbox"
+* dupliquer le fichier sp_dom_crud_devise.html en une copie appelée sp_dom_crud_devise_v2_avec_bootstrap.html
+* on va maintenant modifier sp_dom_crud_devise.html pour tenter d'obtenir un alignement correct des éléments du formulaire
+  sans utiliser bootstrap mais en utilisant flexbox à la place .
+
+* remplacer la partir <form> ... </form> de  sp_dom_crud_devise.html par ceci :
+
+<form role="form">
+  <div class="f-form-group-wrap">
+    <label for="code" class="f-align">code:</label>
+    <div class="f-align">
+      <input type="text"  class="f-max-size" id="code" />
+    </div> 
+  </div>
+  <div class="f-form-group-wrap">
+    <label for="nom" class="f-align">nom:</label>
+    <div class="f-align">
+      <input type="text" class="f-max-size" id="nom" />
+    </div>
+  </div>
+  <div class="f-form-group-wrap">
+    <label for="change" class="f-align">change:</label>
+    <div class="f-align">
+      <input type="text" class="f-max-size" id="change" />
+    </div>
+  </div>
+  <div class="f-form-group-wrap">
+    <label  class="f-align"></label>
+    <div class="f-align">
+       <input type="button" onclick="newDevise()" value="New"/>
+       <input type="button" id="bntAdd" onclick="ajoutDevise()" value="Add"/> 
+       <input type="button" id="bntUpdate" onclick="updateDevise()" value="Update"/>
+       <input type="button" id="bntDelete" onclick="deleteDevise()" value="Delete"/> 
+    </div>
+  </div>
+</form>
+
+tester le comportement responsive et analyser le haut de css/selonPlace.css pour comprendre
+
+* autres éventuelles améliorations libres 
+
+
+ 

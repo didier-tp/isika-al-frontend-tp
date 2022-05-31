@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/*
+linear-gradient(black, white, ...) sert à construire une image 
+avec des couleurs en dégradé du noir au blanc.
+Etant donné que linear-gradient gère bien la transparence 
+(coefficient d'opacité alpha) , on peut utiliser linear-gradient()
+avec 2 fois la même couleur rgba(0, 0, 0, 0.5) pour obtenir un effet de transparence.
+si coeff alpha proche de 0 très transparent.
+si coeff alpha proche de 1 très opaque.
+*/
+.degradeDeBleu {
+  background: linear-gradient(to bottom right, rgba(20, 13, 92, 0.9), rgba(255, 255, 255, 0.9));
+  box-shadow: 4px 4px grey;
+}
+
+.overImage1 {
+  background-color: #000000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/coucher_soleil.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+  padding: 1em;
+  text-align: center;
+}
+
+.overImage1  h2 {
+  color: white;
+}
+
+.overImage2 {
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pont.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+  padding: 1em;
+  text-align: center;
+}
+
+.overImage2  h2 {
+  color: white;
+}
+
+
+/*
+HSL signifie Hue, Saturation, Luminosity, 
+c’est à dire Teinte, Saturation, Luminosité
+https://la-cascade.io/utiliser-hsl-pour-vos-couleurs/
+*/
+@keyframes wheelHueColor {
+  from, to {
+    color: hsl(0,100%,50%);
+  }
+  10% {
+    color: hsl(30,100%,50%);
+  }
+  20% {
+    color: hsl(60,100%,50%);
+  }
+  30% {
+    color: hsl(90,100%,50%);;
+  }
+  40% {
+    color: hsl(130,100%,50%);
+  }
+  50% {
+    color: hsl(180,100%,50%);
+  }
+  60% {
+    color: hsl(240,100%,50%);
+  }
+  70% {
+    color: hsl(280,100%,50%);
+  }
+  80% {
+    color: hsl(320,100%,50%);
+  }
+  90% {
+    color: hsl(360,100%,50%);
+  }
+}
+
+.animTextColor {
+  color: hsl(0,100%,50%);
+  animation: wheelHueColor 60s infinite;
+}
+
+.animBackgroundColor {
+  flex-flow: row wrap;
+  align-items: center;
+  color: #c32283;
+  animation: wheelHueColor 100s infinite;
+  background-color: currentColor;
+  background-image: linear-gradient(45deg, white 10%, black 90%);
+  background-blend-mode: overlay;
+}
+
+/*
+
+
+*/
+.textOverAnimeBackColor {
+  display: inline-block;
+  flex: 1 1 auto;
+  margin: 3em;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 1em;
+  animation: inherit;
+}

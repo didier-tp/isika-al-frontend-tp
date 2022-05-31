@@ -1,0 +1,17 @@
+a) au sein de scss/styles.scss utiliser la variable $couleurPref à différents endroits pour bien voir l'intérêt.
+   (ex: sur .enEvidence et sur h1 )
+
+
+b)
+créer un nouveau fichier _mixins.scss dans le répertoire scss
+au sein de ce fichier créer une fonction/mixin de nom texte_decore() et ayant $couleur_texte en paramètre.
+Au niveau des propriétés css , en plus de la couleur du texte variable, il faudra les caractères en gras et soulignés .
+
+relier le fichier "_mixins.scss" au fichier styles.scss via un @import .
+au sein de styles.scss , appliquer le mixin texte_decore($couleurPref ou ....) sur h2 et h3.
+appliquer ce meme mixin avec une valeur différente si h2 et h3 sont en :hover
+
+c)
+autres expérimentations libres de scss 
+
+
