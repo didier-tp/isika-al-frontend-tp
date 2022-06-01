@@ -1,11 +1,14 @@
 
-var myCanvas; //canvasElement 
+var myCanvas; //canvasElement
+var offscreenCanvasBeforeTemp = null; //for double buffering (temp) 
 var myStatusMsg; //zone ou afficher xC,yC
 var xC,yC; //new (x,y) relative to canvas
 var x1,y1,x2,y2; //mousedown(x1,y1) , mouseup(x2,y2)
                 // relative to canvas
 var typeFigure="ligne"; //par defaut
 var couleur="black"; //par defaut
+var empty = false; //par defaut
+var figStarted = false; //true between mousedown and mouseup
  
 
 function compute_xC_yC_relativeTocanvas(e,canvasElement){
@@ -14,13 +17,6 @@ function compute_xC_yC_relativeTocanvas(e,canvasElement){
 	}
 	
 function clear_canvas(){
-	    //***********A FAIRE EN TP **********************
-		//effacer le contenu du canvas , en
-		//- récupérant un accès au context "2d" (variable locale "ctx")
-        //- appelant la méthode ctx.clearRect (x1,y1,x2,y2 )
-		//sachant qu'il existe myCanvas.width et myCanvas.height 
-		//...
-		//************************************************
 		var ctx = myCanvas.getContext("2d");
 		ctx.clearRect (0,0,myCanvas.width,myCanvas.height )
 	}
@@ -39,38 +35,33 @@ function setTypeFig(tf){
 	
 function log_coords_and_setX1Y1(event){
 		set_and_log_coords_xC_yC(event);
-		x1=xC; y1=yC;
+		x1=xC; y1=yC; //premier point (mousedown)
+		retreiveParameters();
 	}
-	
-function log_coords_and_drawFig(event){
-		set_and_log_coords_xC_yC(event);
-		x2=xC; y2=yC;
-		var selectCouleur = document.getElementById("selCouleur");
-		couleur = selectCouleur.value;
-		console.log("couleur="+couleur);
-		var empty = false; //par defaut
-		var cbEmpty = document.getElementById("cbEmpty");
-		empty=cbEmpty.checked;
-		var ctx = myCanvas.getContext("2d");
-		ctx.beginPath();
-		ctx.strokeStyle=couleur;
-		ctx.fillStyle=couleur;
-		ctx.strokeWidth=1;
-		switch(typeFigure){
+
+function prepareOffsreenCanvas(originalCanvas,copyCanvas){
+	copyCanvas.width=originalCanvas.width;
+	copyCanvas.height=originalCanvas.height;
+    drawingCanvasImage(originalCanvas,copyCanvas);
+}
+
+function drawingCanvasImage(originalCanvas,drawingCanvas){
+    let ctx = drawingCanvas.getContext('2d');
+	ctx.drawImage(originalCanvas, 0, 0);
+}
+
+function drawFigInCanvas(canvas){
+	var ctx = canvas.getContext("2d");
+	ctx.beginPath();
+	ctx.strokeStyle=couleur;
+	ctx.fillStyle=couleur;
+	ctx.strokeWidth=1;
+	switch(typeFigure){
 		case "ligne":	
-		   //***********A FAIRE EN TP **********************
-		   //dessiner une line du point (x,y) vers le point (xC,yC)
-		    //...via ctx.moveTo(,) et ctx.lineTo(,)
-			//************************************************
 			ctx.moveTo(x1,y1) 
 		    ctx.lineTo(x2,y2)
 			break;
 		case "rect":	
-		    //***********A FAIRE EN TP **********************
-		    //dessiner un rectangle partant du point (x1,y1) 
-			//et ayant comme largeur x2-x1  et comme hauteur y2-y1
-		    //...via ctx.rect(x,y,l,h)
-			//************************************************
 			ctx.rect(x1,y1,x2-x1,y2-y1)
 			if(!empty) ctx.fill();
 			break;
@@ -79,17 +70,75 @@ function log_coords_and_drawFig(event){
 			ctx.arc(x1, y1, r, 0 /*startAngle*/, 2 * Math.PI /*endAngle*/, false);
 			if(!empty) ctx.fill();
 			break;
-		}
-		ctx.closePath();
-		ctx.stroke();
 	}
+	ctx.closePath();
+	ctx.stroke();
+}
+	
+function drawFig(temp){
+	//http://blog.bob.sh/2012/12/double-buffering-with-html-5-canvas.html
+	
+	if(offscreenCanvasBeforeTemp==null){
+		  //start of temp 
+		  offscreenCanvasBeforeTemp = document.createElement('canvas');
+		  prepareOffsreenCanvas(myCanvas,offscreenCanvasBeforeTemp); //snapshot before temporay drawing
+	}
+
+	let offscreenCanvasTemp = document.createElement('canvas');
+	prepareOffsreenCanvas(offscreenCanvasBeforeTemp,offscreenCanvasTemp);
+	drawFigInCanvas(offscreenCanvasTemp);//tempary drawing in offscreen canvas
+	drawingCanvasImage(offscreenCanvasTemp,myCanvas);//flip to real screen canvas
+	
+	if(!temp){
+		offscreenCanvasBeforeTemp=null;
+	}
+}
+
+function retreiveParameters(){
+	var selectCouleur = document.getElementById("selCouleur");
+	couleur = selectCouleur.value;
+	console.log("couleur="+couleur);
+	var cbEmpty = document.getElementById("cbEmpty");
+	empty=cbEmpty.checked;
+}
+
+function log_coords_and_drawTempFig(event){
+	    //xor mode not working with canvas because of anti aliasing
+		//tempory drawing with double/triple buffering
+		set_and_log_coords_xC_yC(event);
+		x2=xC; y2=yC;
+		drawFig(true);//new redraw at new position (temp)
+}
+
+function log_coords_and_drawFig(event){
+	set_and_log_coords_xC_yC(event);
+	x2=xC; y2=yC;
+	drawFig(false);//real drawing (not temp)
+}
 	
 function startDessin(){ 
 
 	myCanvas = document.getElementById("myCanvas");
     myStatusMsg  = document.getElementById("my_status_msg");
-	myCanvas.addEventListener("mousemove" , set_and_log_coords_xC_yC);
-	myCanvas.addEventListener("mousedown" , log_coords_and_setX1Y1);
-	myCanvas.addEventListener("mouseup" , log_coords_and_drawFig);
+
+	myCanvas.addEventListener("mousedown" ,
+	    (event)=> { 
+			figStarted=true; 
+			log_coords_and_setX1Y1(event);
+		});
+
+	myCanvas.addEventListener("mousemove" ,
+	     (event)=> {
+			 if(figStarted)
+			     log_coords_and_drawTempFig(event); 
+			  else
+			     set_and_log_coords_xC_yC(event);
+		});
+	
+	myCanvas.addEventListener("mouseup" ,
+	     (event)=> {
+		  log_coords_and_drawFig(event); 
+		  figStarted=false;
+		});
 
 }
