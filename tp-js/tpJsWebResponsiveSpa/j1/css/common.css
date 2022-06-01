@@ -1,2 +1,10 @@
+@import 'font/pacifico.css';
+
+.avecPolicePacifico{
+    font-family: pacifico , cursive;
+    font-size : 16pt;
+}
+
+
 .enEvidence {color : rgb(34, 34, 180) !important ;
             font-style : italic;}
