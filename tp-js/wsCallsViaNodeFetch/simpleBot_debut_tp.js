@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 var villesAvecMeteo = [
     {
-        town : 'Paris',
+        name : 'Paris',
         zip : '75001',
         lat:null,
         lon:null,
@@ -11,7 +11,7 @@ var villesAvecMeteo = [
         temperature : null
     },
     {
-        town : 'Bordeaux',
+        name : 'Bordeaux',
         zip : '33000',
         lat:null,
         lon:null,
@@ -19,7 +19,7 @@ var villesAvecMeteo = [
         temperature : null
     },
     {
-        town : 'Nice',
+        name : 'Nice',
         zip : '06000',
         lat:null,
         lon:null,
@@ -27,7 +27,7 @@ var villesAvecMeteo = [
         temperature : null
     },
     {
-        town : 'Lyon',
+        name : 'Lyon',
         zip : '69001',
         lat:null,
         lon:null,
@@ -35,7 +35,7 @@ var villesAvecMeteo = [
         temperature : null
     },
     {
-        town : 'Strasbourg',
+        name : 'Strasbourg',
         zip : '67000',
         lat:null,
         lon:null,

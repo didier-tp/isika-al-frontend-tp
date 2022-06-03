@@ -55,8 +55,8 @@ function init_devise_db(PersistentDeviseModel,callbackWithAction){
         callbackWithAction({action:"devises collection re-initialized in mongoDB database"})
   });
 }
-
 /*
+
 //valeur de retour : Promise<Devise>
 function getDeviseByCriteria(critere){
    return new Promise(
@@ -80,7 +80,7 @@ function getDeviseByCode(codeDevise){
   return new Promise ((resolve,reject)=> {
     PersistentDeviseModel.findById( codeDevise ,
       function(err,devise){
-      if(devise==null)
+      if(err || devise==null)
            reject({ err : 'not found'});
       else
            resolve(devise);
@@ -92,4 +92,4 @@ function getDeviseByCode(codeDevise){
 //module.exports.initMongooseWithSchemaAndModel = initMongooseWithSchemaAndModel;
 //module.exports.init_devise_db = init_devise_db;
 export default { initMongooseWithSchemaAndModel , init_devise_db }
-//export { initMongooseWithSchemaAndModel , init_devise_db , getDeviseByCriteria , getDeviseByCode}
+//export default { initMongooseWithSchemaAndModel , init_devise_db ,   getDeviseByCriteria , getDeviseByCode}

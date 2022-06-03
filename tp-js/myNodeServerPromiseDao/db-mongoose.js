@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 
 var mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1:27017"; //by default
+//ou bien "mongodb://superuser:motdepasse@127.0.0.1:27017"
 
 
 console.log("mongoDbUrl="+mongoDbUrl);
 mongoose.connect(mongoDbUrl, {useNewUrlParser: true, 
 	                              useUnifiedTopology: true , 
-								  dbName : 'test'});
+								  dbName : 'devise_db'});
 var thisDb  = mongoose.connection;
 
 thisDb.on('error' , function() { 
