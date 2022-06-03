@@ -169,3 +169,22 @@ async function retreiveInfos(){
 }
 retreiveInfos();
 
+
+
+//idee pour phase 3 (déclenchement périodique):
+var intervaleDeTemps = 5000 ; //5000ms = 5s
+//pour 1h , intervaleDeTemps = 1000 * 60 * 60  
+var compteur=0;
+
+//coder une fonction qui sera appelée toutes les 5s (5000ms) et qui va incrementer et afficher le
+//compteur. Lorsque le compteur aura atteint la valeur 10 on arrete le traitement périodique
+// via un appel à clearInterval(traitementPeriodique)
+function codeDeclenchePeriodiquement(){
+  compteur++;
+  console.log("compteur="+compteur);
+  if(compteur==10){
+    { clearInterval(traitementPeriodique); process.exit();}
+  }
+}
+var traitementPeriodique = setInterval(codeDeclenchePeriodiquement, intervaleDeTemps);
+
