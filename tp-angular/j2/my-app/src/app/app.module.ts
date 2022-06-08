@@ -18,6 +18,7 @@ import { RegletteComponent } from './demo/reglette/reglette.component';
 import { ListProdComponent } from './demo/list-prod/list-prod.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DeviseComponent } from './devise/devise.component';
+import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DeviseComponent } from './devise/devise.component';
     ZzComponent,
     RegletteComponent,
     ListProdComponent,
-    DeviseComponent
+    DeviseComponent,
+    TogglePanelComponent
   ],
   imports: [
     BrowserModule,
