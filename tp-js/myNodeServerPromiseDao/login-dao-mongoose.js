@@ -16,14 +16,13 @@ function initMongooseWithSchemaAndModel () {
    
     mongoose.Connection = thisDb;
       thisSchema = new mongoose.Schema({
-        _id: { type : String , alias : "code" } ,
-        nom: { type : String , alias : "name" } ,
-        change : Number
+        _id: { type : String , alias : "username" } ,
+        password: String  ,
+        roles : String
       });
      
-      //NB: initialement/habituellement  nom: { type : String  } ou bien  name: { type : String  }
-      //ici/exceptionellement nom: { type : String , alias : "name" } pour des raisons
-      //de compatibilité entre plusieurs versions des clients/frontends (angular , ... : 2018 à 2022)
+      //NB: la partie "password" devrait idéalement jamais être stockée telle quelle
+      // mais cryptée via bcrypt
 
       thisSchema.set('id',false); //no default virtual id alias for _id
       thisSchema.set('toJSON', { virtuals: true , 
@@ -31,8 +30,8 @@ function initMongooseWithSchemaAndModel () {
                                    transform: function (doc, ret) {   delete ret._id;  }
                                  });                             
       //console.log("mongoose thisSchema : " + JSON.stringify(thisSchema) );
-      //"Devise" model name is "devises" collection name in mongoDB  database
-      ThisPersistentModel = mongoose.model('Devise', thisSchema);
+      //"Login" model name is "logins" collection name in mongoDB  database
+      ThisPersistentModel = mongoose.model('Login', thisSchema);
 }
 
 initMongooseWithSchemaAndModel();
@@ -46,11 +45,11 @@ function reinit_db(){
           reject(err);
         }
         //insert elements after deleting olds
-        (new ThisPersistentModel({ code : "EUR" , nom : "Euro" , change : 1.0})).save();
-        (new ThisPersistentModel({ code : "USD" , nom : "Dollar" , change : 1.1})).save();
-        (new ThisPersistentModel({ code : "GBP" , nom : "Livre" , change : 0.9})).save();
-        (new ThisPersistentModel({ code : "JPY" , nom : "Yen" , change : 123.7})).save();
-        resolve({action:"devises collection re-initialized in mongoDB database"})
+        (new ThisPersistentModel({ username : "user1" , password : "pwduser1" , roles : "user"})).save();
+        (new ThisPersistentModel({ username : "user2" , password : "pwduser2" , roles : "user"})).save();
+        (new ThisPersistentModel({ username : "admin1" , password : "pwdadmin1" , roles : "admin,user"})).save();
+        (new ThisPersistentModel({ username : "admin2" , password : "pwdadmin2" , roles : "admin"})).save();
+        resolve({action:"logins collection re-initialized in mongoDB database"})
       })
   });
 }
@@ -69,7 +68,7 @@ function save(entity) {
 }
 
 function updateOne(newValueOfEntityToUpdate) {
-  return genericPromiseMongoose.updateOneWithModel(newValueOfEntityToUpdate,newValueOfEntityToUpdate.code,ThisPersistentModel);
+  return genericPromiseMongoose.updateOneWithModel(newValueOfEntityToUpdate,newValueOfEntityToUpdate.username,ThisPersistentModel);
 }
 
 function deleteOne(idOfEntityToDelete) {

@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import produitApiRoutes from './produit-api-routes.js';
 import deviseApiRoutes from './devise-api-routes.js';
+import loginApiRoutes from './login-api-routes.js';
 
 //support parsing of JSON post data
 var jsonParser = express.json({  extended: true}); 
@@ -36,6 +37,7 @@ app.get('/', function(req , res ) {
 // delegate REST API routes to apiRouter(s) :
 app.use(produitApiRoutes.apiRouter);
 app.use(deviseApiRoutes.apiRouter);
+app.use(loginApiRoutes.apiRouter);
 
 let backendPort = process.env.PORT || 8282; 
 app.listen(backendPort , function () {

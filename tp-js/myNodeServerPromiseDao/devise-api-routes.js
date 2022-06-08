@@ -92,6 +92,29 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	}
 });
 
+//version anglaise (pour client angular)
+//exemple URL: http://localhost:8282/devise-api/public/convert?amount=50&source=EUR&target=USD
+apiRouter.route('/devise-api/public/convert')
+.get( async  function(req , res  , next ) {
+	let montant = Number(req.query.amount);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.target;
+	try{
+		let  [ deviseSource , deviseCible ]
+		 = await  Promise.all([ deviseDao.findById(codeDeviseSource) ,
+			                    deviseDao.findById(codeDeviseCible)
+							   ]);
+		let montantConverti = montant * deviseCible.change / deviseSource.change;
+		res.send ( { amount : montant , 
+					source :codeDeviseSource , 
+					target : codeDeviseCible ,
+					result : montantConverti});
+		}
+	catch(ex){
+		res.status(statusCodeFromEx(ex)).send(ex);
+	}
+});
+
 
 // http://localhost:8282/devise-api/private/role-admin/devise en mode post
 // avec { "code" : "mxy" , "nom" : "monnaieXy" , "change" : 123 } dans req.body

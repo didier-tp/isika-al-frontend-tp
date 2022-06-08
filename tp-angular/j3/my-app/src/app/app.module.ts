@@ -19,6 +19,9 @@ import { ListProdComponent } from './demo/list-prod/list-prod.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DeviseComponent } from './devise/devise.component';
 import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
+import { ConversionComponent } from './conversion/conversion.component';
+import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,13 +39,16 @@ import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
     RegletteComponent,
     ListProdComponent,
     DeviseComponent,
-    TogglePanelComponent
+    TogglePanelComponent,
+    ConversionComponent,
+    AdminDeviseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
