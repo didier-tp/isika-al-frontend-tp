@@ -12,9 +12,14 @@ export class TogglePanelComponent implements OnInit {
   @Input()
   title /* : string */ = 'default panel title';
 
-  constructor() { }
+  constructor() { 
+    console.log("dans constructor , title= " + this.title);
+  }
 
+  //proche du @PostConstruct de java
   ngOnInit(): void {
+    console.log("dans ngOnInit , title= " + this.title);
+    //on peut ici (si besoin) , aller chercher des infos en fonction du title
   }
 
 }
