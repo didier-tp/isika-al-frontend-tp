@@ -18,7 +18,7 @@ import { RegletteComponent } from './demo/reglette/reglette.component';
 import { ListProdComponent } from './demo/list-prod/list-prod.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DeviseComponent } from './devise/devise.component';
-import { BsUtilModule } from 'src/bs-util/bs-util.module';
+import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
 
 @NgModule({
   declarations: [
@@ -35,14 +35,14 @@ import { BsUtilModule } from 'src/bs-util/bs-util.module';
     ZzComponent,
     RegletteComponent,
     ListProdComponent,
-    DeviseComponent
+    DeviseComponent,
+    TogglePanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    TabsModule.forRoot(),
-    BsUtilModule
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
