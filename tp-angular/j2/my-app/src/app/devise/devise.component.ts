@@ -34,7 +34,57 @@ export class DeviseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //à coder en TP:
-  //onNew() , onAdd() , onDelete() , onUpdate(), onSelectDevise(d : Devise )
+  onNew(){
+    this.mode="newOne";
+    this.selectedDevise=undefined;
+    this.deviseTemp = new Devise();
+    this.message = "nouvelle devise à saisir ...";
+  }
+
+  onAdd(){
+    this.tabDevises.push(this.deviseTemp);
+    this.onNew();
+    this.message = "devise peut être ajoutée";
+  }
+
+  onDelete(){
+    if(this.selectedDevise){
+      let indexToDelete = -1;
+      this.tabDevises.forEach((devise,index)=>{if(devise==this.selectedDevise) indexToDelete=index; });
+      if(indexToDelete>=0){
+        this.tabDevises.splice(indexToDelete,1);
+      }
+    }
+    this.onNew();
+    this.message = "devise peut être supprimée";
+  }
+
+  onUpdate(){
+  //test imposé par typescript sur this.selectedDevise potentiellement undefined
+   if(this.selectedDevise != undefined){
+    //Rappel: this.selectedDevise est ici une référence
+    //qui pointe directement sur le i eme objet du tableau this.tabDevises
+    //(selon ligne sélectionnée)
+         this.selectedDevise.code = this.deviseTemp.code;
+         this.selectedDevise.name = this.deviseTemp.name;
+         this.selectedDevise.change = this.deviseTemp.change;
+         this.message = "devise mise à jour";
+   }
+  }
+
+  //fonction évenementielle à appeler lorsque l'on
+  //va sélectionner une des lignes du tableau
+  onSelectDevise(d : Devise ){
+    //NB: d:Devise est passé par référence (comportement de java/javascript)
+    //et donc ici d et this.selectedDevise référencent
+    //directement un des objets du tableau this.tabDevises
+      this.selectedDevise = d;
+      this.mode="existingOne";
+      //via un clonage explicite , this.deviseTemp est une copie
+      //indépendante de this.selectedDevise (et pas une référence sur l'objet original)
+      this.deviseTemp = this.cloneDevise(this.selectedDevise);
+      this.message = "devise selectionnée = " + JSON.stringify(this.selectedDevise);
+  }
+
 
 }

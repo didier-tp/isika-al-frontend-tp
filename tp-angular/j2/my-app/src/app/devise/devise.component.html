@@ -5,8 +5,9 @@
        <div class="card-body">
        <table class="table table-bordered">
            <tr><th>code</th><th>name</th><th>change</th></tr>
-           <!-- A COMPLETER EN TP -->
-           <tr *ngFor="let d of tabDevises ; let i=index">
+           <tr *ngFor="let d of tabDevises ; let i=index"
+           (click)="onSelectDevise(d)"
+           [class.selected]="d==selectedDevise">
             <td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td>
         </tr>
        </table> <!-- end of table -->
@@ -22,27 +23,32 @@
            <div class="row form-group">
            <label class="col-sm-3 text-sm-end form-label">code:</label>
            <div class="col-sm-9">
-               <input name="code" class="form-control  mb-1"  required minlength="3" />
+               <input name="code" class="form-control  mb-1" [(ngModel)]="deviseTemp.code" required minlength="3" />
            </div>
        </div> <!-- end of row form-group -->
        <div class="row form-group">
                <label class="col-sm-3 text-sm-end form-label">name:</label>
                <div class="col-sm-9">
-                   <input name="nom" class="form-control  mb-1"  required />
+                   <input name="nom" class="form-control  mb-1" [(ngModel)]="deviseTemp.name" required />
                </div>
            </div> <!-- end of row form-group -->
            <div class="row form-group">
                <label class="col-sm-3 text-sm-end form-label">change:</label>
                <div class="col-sm-9">
-               <input name="change" type="number" class="form-control mb-1"  required />
+               <input name="change" type="number" class="form-control mb-1" [(ngModel)]="deviseTemp.change"  required />
                </div>
            </div><!-- end of row form-group -->
            <div class="row form-group">
                <div class="col-sm-9 offset-sm-3">
-                   <button class="btn-primary" > update </button> &nbsp;
-                   <button  class="btn-primary"> new </button>  &nbsp;
-                   <button class="btn-primary"> add </button> &nbsp;
-                   <button  class="btn-danger"> delete </button> 
+                    <button (click)="onUpdate()" class="btn-primary" 
+                        [style.visibility]="(mode=='existingOne')?'visible':'hidden'"
+                        [disabled]="!formDevise.form.valid"  >
+                        update <i class="bi-save"></i></button> &nbsp;
+                    <button (click)="onNew()" class="btn-primary"> new </button>  &nbsp;
+                    <button (click)="onAdd()" [disabled]="!formDevise.form.valid"
+                            [style.visibility]="(mode=='newOne')?'visible':'hidden'" 
+                            class="btn-primary"> add </button> &nbsp;
+                    <button (click)="onDelete()" [style.visibility]="(mode=='existingOne')?'visible':'hidden'" class="btn-danger"> delete </button>
                </div> 
            </div><!-- end of row form-group -->
        </form><!-- end of form -->
