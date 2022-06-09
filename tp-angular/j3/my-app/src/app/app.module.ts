@@ -21,7 +21,8 @@ import { DeviseComponent } from './devise/devise.component';
 import { TogglePanelComponent } from './toggle-panel/toggle-panel.component';
 import { ConversionComponent } from './conversion/conversion.component';
 import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyAuthInterceptor } from './common/interceptor/my-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,13 @@ import { HttpClientModule } from '@angular/common/http';
     TabsModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyAuthInterceptor,
+      multi: true
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

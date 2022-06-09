@@ -4,6 +4,7 @@ const apiRouter = express.Router();
 import loginDao from './login-dao-mongoose.js';
 var PersistentLoginModel = loginDao.ThisPersistentModel; //to use only for specific extra request (not in dao)
 
+import jwtUtil from './jwt-util.js';
 
 function statusCodeFromEx(ex){
 	let status = 500;
@@ -67,10 +68,10 @@ apiRouter.route(['/login-api/private/login' ,
     } 
 });
 
-// http://localhost:8282/login-api/private/role-admin/login en mode post
+// http://localhost:8282/login-api/private/login en mode post
 // avec { "username" : "user3" , "password" : "pwduser3" , "roles" : "user" } dans req.body
 apiRouter.route([ '/login-api/private/login',
-                  '/login-api/private/role-admin/login'])
+                  '/login-api/private/role_admin/login'])
 .post(async function(req , res  , next ) {
 	var nouveauLogin = req.body;
 	console.log("POST,nouveauLogin="+JSON.stringify(nouveauLogin));
@@ -96,10 +97,24 @@ apiRouter.route('/login-api/public/auth')
 	try{
 		let login = await loginDao.findById( authReq.username);
 		if(login && login.password == authReq.password){
-			authResponse.message="successful login";
-			authResponse.roles=login.roles;
-            authResponse.status=true;
-			res.send(authResponse);
+			let arrayUserRoles = login.roles.split(',');
+        	let arrayAskedRoles = authReq.roles.split(',');
+        	let okRoles=true;
+        	for(let askedRole of arrayAskedRoles){
+            	if(!arrayUserRoles.includes(askedRole))
+              	 okRoles=false;
+        	}
+        	if(okRoles==true){
+				authResponse.message="successful login";
+				authResponse.roles=authReq.roles;
+				authResponse.status=true;
+				authResponse.token=jwtUtil.buildJwtToken(authReq.username,authReq.roles);
+				res.send(authResponse);
+			}else{
+				authResponse.message="login failed (good username/password but no asked roles="+authReq.roles+")";
+				authResponse.status=false;
+				res.status(401).send(authResponse);
+			}
 		}else{
 			authResponse.message="login failed (wrong password)";
 			authResponse.status=false;
@@ -115,10 +130,10 @@ apiRouter.route('/login-api/public/auth')
 
 
 
-// http://localhost:8282/login-api/private/role-admin/login en mode PUT
+// http://localhost:8282/login-api/private/login en mode PUT
 // avec { "username" : "user3" , "password" : "pwduser3" , "roles" : "admin" } dans req.body
 apiRouter.route([ '/login-api/private/login',
-                  '/login-api/private/role-admin/login'])
+                  '/login-api/private/role_admin/login'])
 .put( async function(req , res  , next ) {
 	var newValueOfloginToUpdate = req.body;
 	console.log("PUT,newValueOfloginToUpdate="+JSON.stringify(newValueOfloginToUpdate));
@@ -131,9 +146,9 @@ apiRouter.route([ '/login-api/private/login',
 });
 
 
-// http://localhost:8282/login-api/private/role-admin/login/user1 en mode DELETE
+// http://localhost:8282/login-api/private/login/user1 en mode DELETE
 apiRouter.route([ '/login-api/private/login/:username',
-                  '/login-api/private/role-admin/login/:username'])
+                  '/login-api/private/role_admin/login/:username'])
 .delete( async function(req , res  , next ) {
 	var username = req.params.username;
 	console.log("DELETE,username="+username);

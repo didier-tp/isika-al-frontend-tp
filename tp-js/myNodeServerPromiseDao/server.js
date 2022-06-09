@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 import produitApiRoutes from './produit-api-routes.js';
 import deviseApiRoutes from './devise-api-routes.js';
 import loginApiRoutes from './login-api-routes.js';
+import verifAuth from './verif-auth.js';
 
 //support parsing of JSON post data
 var jsonParser = express.json({  extended: true}); 
@@ -34,10 +35,16 @@ app.get('/', function(req , res ) {
   res.redirect('/html/index.html');
 });
 
+//verif auth beared token in request for private api/path:
+app.use(verifAuth.verifTokenInHeadersForPrivatePath);
+
+//ROUTES ORDINAIRES (apres PRE traitements , avant POST traitements)
+
 // delegate REST API routes to apiRouter(s) :
 app.use(produitApiRoutes.apiRouter);
 app.use(deviseApiRoutes.apiRouter);
 app.use(loginApiRoutes.apiRouter);
+app.use(verifAuth.apiRouter); //dev-only ( http://localhost:8282/auth-api/dev-only/secure/true or false)
 
 let backendPort = process.env.PORT || 8282; 
 app.listen(backendPort , function () {

@@ -116,10 +116,11 @@ apiRouter.route('/devise-api/public/convert')
 });
 
 
-// http://localhost:8282/devise-api/private/role-admin/devise en mode post
+// http://localhost:8282/devise-api/private/devise en mode post
 // avec { "code" : "mxy" , "nom" : "monnaieXy" , "change" : 123 } dans req.body
 apiRouter.route([ '/devise-api/private/devise',
-                  '/devise-api/private/role-admin/devise'])
+                  '/devise-api/private/role-admin/devise',
+				  '/devise-api/private/role_admin/devise'])
 .post(async function(req , res  , next ) {
 	var nouvelleDevise = req.body;
 	console.log("POST,nouvelleDevise="+JSON.stringify(nouvelleDevise));
@@ -133,10 +134,11 @@ apiRouter.route([ '/devise-api/private/devise',
 
 
 
-// http://localhost:8282/devise-api/private/role-admin/devise en mode PUT
+// http://localhost:8282/devise-api/private/devise en mode PUT
 // avec { "code" : "USD" , "nom" : "Dollar" , "change" : 1.123 } dans req.body
 apiRouter.route([ '/devise-api/private/devise',
-                  '/devise-api/private/role-admin/devise'])
+                  '/devise-api/private/role-admin/devise',
+				  '/devise-api/private/role_admin/devise'])
 .put( async function(req , res  , next ) {
 	var newValueOfdeviseToUpdate = req.body;
 	console.log("PUT,newValueOfdeviseToUpdate="+JSON.stringify(newValueOfdeviseToUpdate));
@@ -149,9 +151,10 @@ apiRouter.route([ '/devise-api/private/devise',
 });
 
 
-// http://localhost:8282/devise-api/private/role-admin/devise/EUR en mode DELETE
+// http://localhost:8282/devise-api/private/devise/EUR en mode DELETE
 apiRouter.route([ '/devise-api/private/devise/:code',
-                  '/devise-api/private/role-admin/devise/:code'])
+                  '/devise-api/private/role-admin/devise/:code',
+				  '/devise-api/private/role_admin/devise/:code'])
 .delete( async function(req , res  , next ) {
 	var codeDevise = req.params.code;
 	console.log("DELETE,codeDevise="+codeDevise);
