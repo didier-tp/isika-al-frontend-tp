@@ -1,5 +1,5 @@
 export class User{
-    constructor(public username="?",
+    constructor(public username ="?" ,
                 public authenticated=false,
                 public roles="?"){}
 }

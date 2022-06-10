@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviseService} from '../common/service/devise.service'
 import { Devise} from '../common/data/devise'
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-conversion',
@@ -9,12 +10,12 @@ import { Devise} from '../common/data/devise'
 })
 export class ConversionComponent implements OnInit {
 
-  montant! : number ;
-  codeDeviseSource! : string ;
-  codeDeviseCible! : string ;
-  montantConverti! : number ;
+  montant : number =0 ;
+  codeDeviseSource : string ="";
+  codeDeviseCible : string ="";
+  montantConverti : number =0;
 
-  listeDevises! : Devise[] ; //à choisir dans liste déroulante.
+  listeDevises : Devise[] =[]; //à choisir dans liste déroulante.
 
   constructor(private _deviseService : DeviseService) { }
 
@@ -23,6 +24,9 @@ export class ConversionComponent implements OnInit {
         this._deviseService.convertir$(this.montant,
                                       this.codeDeviseSource,
                                       this.codeDeviseCible)
+               /* .pipe(
+                  map( (v)=> -v )
+                )   */                   
                 .subscribe({
                     next : (res :number) => { this.montantConverti = res;
                                       console.log("resultat obtenu en différé")} ,
