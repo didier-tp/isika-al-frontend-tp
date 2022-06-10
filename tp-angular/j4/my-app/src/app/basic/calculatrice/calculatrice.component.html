@@ -6,7 +6,7 @@
     <label>operation :</label>
         <input type="button" value="+" (click)="onCalculer('+')" > &nbsp; 
         <input type="button" value="-" (click)="onCalculer('-')" > &nbsp; 
-        <input type="button" value="*" (click)="onCalculer('*')" >
+        <input type="button" value="*" (click)="onCalculer('*')" [style.visibility]="modeChoisi=='sophistiquee'?'visible':'hidden'" >
        <br>
     <label>resultat:</label> 
     <span [style.font-weight]="res>0?'bold':'normal'"

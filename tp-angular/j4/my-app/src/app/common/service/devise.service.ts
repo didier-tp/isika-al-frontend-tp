@@ -18,8 +18,8 @@ export interface ConvertResult {
 })
 export class DeviseService {
 
-  //private _apiBaseUrl ="http://localhost:8282/devise-api"; 
-  _apiBaseUrl ="/devise-api"; //with ng serve --proxy-config proxy.conf.json
+  private _apiBaseUrl ="http://localhost:8282/devise-api"; 
+  //_apiBaseUrl ="/devise-api"; //with ng serve --proxy-config proxy.conf.json
   publicBaseUrl = `${this._apiBaseUrl}/public`;
   privateBaseUrl = `${this._apiBaseUrl}/private/role_admin`;
 
