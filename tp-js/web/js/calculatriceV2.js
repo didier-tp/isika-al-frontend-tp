@@ -1,5 +1,5 @@
 
-
+var jsonData = '{ "label" : "texte qui va bien" , "image" : "image1.png" }';
 
 window.addEventListener("load",function(){
 
@@ -25,7 +25,7 @@ window.addEventListener("load",function(){
 	   divA1.setAttribute("id","divA1");
 	   divA1.setAttribute("class","c1");
 	   //divA1.innerHTML="texte de divA1";//ou bien sous partie de .label de objData
-	   divA1.innerHTML=objData.label
+	   divA1.innerHTML=objData.label+"<br/>"
 
 
        //imbriquer au sein de divA1 une image dont le nom de l'image
@@ -40,7 +40,7 @@ window.addEventListener("load",function(){
 	});
 });
 
-var jsonData = '{ "label" : "blabla" , "image" : "image1.png" }';
+
 
 function cacherOuMontrerHistorique(){
 	var zoneHistorique = document.getElementById("ulHistorique");
