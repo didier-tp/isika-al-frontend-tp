@@ -24,7 +24,7 @@ function moitie(x){
 	return x/2;
 }
 
-
+/*
 //dans beforeEach , contruire une instance
 //new Personne("toto",25);
 function Personne(nom,age){
@@ -32,5 +32,20 @@ function Personne(nom,age){
 	this.age=age;
 	this.incrementerAge=function(){
 		this.age++;
+	}
+}*/
+
+//dans beforeEach , contruire une instance
+//new Personne("jean","Bon",25);
+//let nc = p1.nomComplet();//"jean Bon"
+function Personne(prenom,nom,age){
+	this.prenom=prenom;
+	this.nom=nom;
+	this.age=age;
+	this.incrementerAge=function(){
+		this.age++;
+	}
+	this.nomComplet=function(){
+		return this.prenom + " " + this.nom;
 	}
 }

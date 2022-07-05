@@ -3,7 +3,7 @@ describe("my calculator tests", function () {
     
     beforeEach(function () {
      console.log("initialisation : new ... or ..." );
-     p = new Personne("toto",25);
+     p = new Personne("alain" , "Therieur",25);
     });
 	
     it("27ans apres 2 incrementerAge",function(){
@@ -11,9 +11,13 @@ describe("my calculator tests", function () {
         expect(p.age).toBe(27);
     })
 
-    it("le nom de p est toto" , function(){
-       expect(p.nom).toBe("toto");
+    it("le nom de p est Therieur" , function(){
+       expect(p.nom).toBe("Therieur");
     });
+
+    it("le nomComplet de p est alain Therieur" , function(){
+        expect(p.nomComplet()).toBe("alain Therieur");
+     });
 
     
     it("2+3==5?", function () {
