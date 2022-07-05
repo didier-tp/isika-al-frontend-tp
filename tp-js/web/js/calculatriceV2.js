@@ -11,6 +11,17 @@ window.addEventListener("load",function(){
 			calculerOperation(tabOp[i]);
 		});
 	}
+
+	var btnBb =  document.getElementById("bb");
+	btnBb.addEventListener("click",function (evt){
+       let divA1 = document.createElement("div");
+	   divA1.setAttribute("id","divA1");
+	   divA1.setAttribute("class","c1");
+	   divA1.innerHTML="texte de divA1";
+
+	   let divA = document.getElementById("divA");
+	   divA.appendChild(divA1);
+	});
 });
 
 function cacherOuMontrerHistorique(){
