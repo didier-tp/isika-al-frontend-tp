@@ -28,6 +28,9 @@ describe('commande Tests', () => {
 	   
 	cy.get('#bodyTableau td:nth-child(3)')
 	   .should('have.text','stylo')
+
+	cy.get('#bodyTableau td:nth-child(5)')
+	   .should('have.text','3') //qte valant bien 3
   })
   
   

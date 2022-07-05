@@ -50,6 +50,27 @@ describe('My HTML/JS Tests', () => {
 	cy.get('#spanRes')
       .should('have.text', '12')
   })
+
+  it('good substract in calculatriceV3.html', () => {
+    
+	//visiter calculatriceV3.html
+	cy.visit("http://localhost:3000/calculatriceV3.html")
+	
+    cy.get('#a').type('8').should('have.value', '8')
+	  
+	cy.get('#b').type('5').should('have.value', '5')
+	  
+	//declencher click sur bouton multiplication
+	//cy.get('#btn_op_soustraction').click()
+	cy.get('#btn_op_soustraction').trigger("click")
+	
+	//vérifier que la zone d'id spanRes comporte le texte '3'
+	cy.get('#spanRes')
+      .should('have.text', '3')
+
+	  cy.get("#ulHistorique li:last-child")
+	  .should('have.text', '8-5=3')
+  })
   
   it('Historique cache ou bien affiche', () => {
 	//visiter calculatriceV3.html
