@@ -95,16 +95,18 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	let codeDeviseCible = req.query.cible;
 	let deviseSourceLocal = null;
 	//on demande à mongodb les détails des devises source et cible
-	PersistentDeviseModel.findOne( { _id : codeDeviseSource} )
+	//PersistentDeviseModel.findOne( { _id : codeDeviseSource} )
+	devise_dao_mongoose.getDeviseByCode(codeDeviseSource)
 	  .then((deviseSource)=>{deviseSourceLocal = deviseSource; 
-		                     return PersistentDeviseModel.findOne( { _id : codeDeviseCible} )})
+		                     /*return PersistentDeviseModel.findOne( { _id : codeDeviseCible} )*/
+							 return devise_dao_mongoose.getDeviseByCode(codeDeviseCible)})
 	  .then((deviseCible)=>{ let montantConverti = montant * deviseCible.change / deviseSourceLocal.change;
 	                   res.send ( { montant : montant , 
 				                   source :codeDeviseSource , 
 				                   cible : codeDeviseCible ,
 				                   montantConverti : montantConverti});
 	   })
-	  .catch((erreur)=>{ res.status(404).send({ message:"devise  pas trouvee"})	;});		                         
+	  .catch((erreur)=>{ res.status(404).send({ message:"devise toujours pas trouvee"})	;});		                         
 })
 
 /*
