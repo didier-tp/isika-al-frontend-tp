@@ -59,7 +59,7 @@ function init_devise_db(PersistentDeviseModel,callbackWithAction){
   });
 }
 /*
-*/
+
 
 //valeur de retour : Promise<Devise>
 function getDeviseByCriteria(critere){
@@ -91,9 +91,9 @@ function getDeviseByCode(codeDevise){
      });
   });
 }
-
+*/
 
 //module.exports.initMongooseWithSchemaAndModel = initMongooseWithSchemaAndModel;
 //module.exports.init_devise_db = init_devise_db;
-//export default { initMongooseWithSchemaAndModel , init_devise_db }
-export default { initMongooseWithSchemaAndModel , init_devise_db ,   getDeviseByCriteria , getDeviseByCode}
+export default { initMongooseWithSchemaAndModel , init_devise_db }
+//export default { initMongooseWithSchemaAndModel , init_devise_db ,   getDeviseByCriteria , getDeviseByCode}

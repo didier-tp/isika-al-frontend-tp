@@ -55,7 +55,7 @@ apiRouter.route('/devise-api/public/devise/:code')
 	*/
 });
 
-/*
+
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
 .get( function(req , res  , next ) {
@@ -85,8 +85,8 @@ apiRouter.route('/devise-api/public/devise-conversion')
 			});
 		});
 })
-*/
 
+/*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
 .get( async function(req , res  , next ) {
@@ -114,7 +114,7 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	}
 	
 });
-
+*/
 /*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
@@ -139,50 +139,7 @@ apiRouter.route('/devise-api/public/devise-conversion')
 })
 */
 
-/*
-//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
-apiRouter.route('/devise-api/public/devise-conversion')
-.get( function(req , res  , next ) {
-	let montant = Number(req.query.montant);
-	let codeDeviseSource = req.query.source;
-	let codeDeviseCible = req.query.cible;
 
-	let tauxChangeDeviseSource ;
-
-	devise_dao_mongoose.getDeviseByCode(codeDeviseSource)
-	.then( (deviseSource)=>{tauxChangeDeviseSource=deviseSource.change;  
-		                    return devise_dao_mongoose.getDeviseByCode(codeDeviseCible)})
-	.then( (deviseCible)=>{let tauxChangeDeviseCible=deviseCible.change;
-		let montantConverti = montant * tauxChangeDeviseCible / tauxChangeDeviseSource;
-		res.send ( { montant : montant , 
-					source :codeDeviseSource , 
-					cible : codeDeviseCible ,
-					montantConverti : montantConverti});  
-	})
-	.catch((error)=>{ res.status(500).send({ err : 'erreur conversion : ' , details : error});})
-})
-*/
-/*
-//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
-apiRouter.route('/devise-api/public/devise-conversion')
-.get( async function(req ,  res  , next ) {
-	let montant = Number(req.query.montant);
-	let codeDeviseSource = req.query.source;
-	let codeDeviseCible = req.query.cible;
-	try{
-		let deviseSource = await devise_dao_mongoose.getDeviseByCode(codeDeviseSource);
-		let deviseCible = await devise_dao_mongoose.getDeviseByCode(codeDeviseCible);
-		let montantConverti = montant * deviseCible.change / deviseSource.change;
-			res.send ( { montant : montant , 
-						source :codeDeviseSource , 
-						cible : codeDeviseCible ,
-						montantConverti : montantConverti});  
-	}
-	catch(error){
-		res.status(500).send({ err : 'erreur conversion : ' , details : error});
-	}
-})
-*/
 
 //exemple URL: http://localhost:8282/devise-api/public/devise (returning all devises)
 //             http://localhost:8282/devise-api/public/devise?changeMini=1.05
