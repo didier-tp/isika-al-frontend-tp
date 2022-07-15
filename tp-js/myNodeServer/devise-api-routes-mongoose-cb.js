@@ -89,6 +89,35 @@ apiRouter.route('/devise-api/public/devise-conversion')
 
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
+.get( async function(req , res  , next ) {
+	let montant = Number(req.query.montant);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.cible;
+	//on demande à mongodb les détails des devises source et cible
+    try{
+         //appels via await au sein d'une fonction préfixée par async
+		 //const deviseSource = await PersistentDeviseModel.findOne( { _id : codeDeviseSource} );
+		 //const deviseSource = await devise_dao_mongoose.getDeviseByCode(codeDeviseSource);
+		 //const deviseCible =  await PersistentDeviseModel.findOne( { _id : codeDeviseCible});
+		 //const deviseCible =  await devise_dao_mongoose.getDeviseByCode(codeDeviseCible);
+		 const [deviseSource,deviseCible]=await Promise.all([
+			devise_dao_mongoose.getDeviseByCode(codeDeviseSource) ,
+			devise_dao_mongoose.getDeviseByCode(codeDeviseCible)
+		 ]);
+		 let montantConverti = montant * deviseCible.change / deviseSource.change;
+	    res.send ( { montant : montant , 
+				    source :codeDeviseSource , 
+				    cible : codeDeviseCible ,
+				    montantConverti : montantConverti});
+	}catch(e){
+		res.status(404).send({ message:"devise inconnue pas trouvee qui existe pas"})	;
+	}
+	
+});
+
+/*
+//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
+apiRouter.route('/devise-api/public/devise-conversion')
 .get( function(req , res  , next ) {
 	let montant = Number(req.query.montant);
 	let codeDeviseSource = req.query.source;
@@ -98,7 +127,7 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	//PersistentDeviseModel.findOne( { _id : codeDeviseSource} )
 	devise_dao_mongoose.getDeviseByCode(codeDeviseSource)
 	  .then((deviseSource)=>{deviseSourceLocal = deviseSource; 
-		                     /*return PersistentDeviseModel.findOne( { _id : codeDeviseCible} )*/
+		                     //return PersistentDeviseModel.findOne( { _id : codeDeviseCible} )
 							 return devise_dao_mongoose.getDeviseByCode(codeDeviseCible)})
 	  .then((deviseCible)=>{ let montantConverti = montant * deviseCible.change / deviseSourceLocal.change;
 	                   res.send ( { montant : montant , 
@@ -108,6 +137,7 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	   })
 	  .catch((erreur)=>{ res.status(404).send({ message:"devise toujours pas trouvee"})	;});		                         
 })
+*/
 
 /*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
