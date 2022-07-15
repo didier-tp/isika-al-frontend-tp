@@ -13,6 +13,7 @@ var PersistentDeviseModel; //mongoose Model (constructor of persistent Persisten
 
 var initMongooseWithSchemaAndModel = function(callbackWithPersistentDeviseModel) {
     mongoose.connect(mongoDbUrl, {useNewUrlParser: true, 
+                                  user : "" , pass : "" ,
                                 /*user: "username_telque_superuser" , pass : "motdepasse",*/
 	                              useUnifiedTopology: true , 
 								  dbName : 'devise_db'});//équivalent à "use devise_db" de mongo_shell
@@ -34,6 +35,8 @@ var initMongooseWithSchemaAndModel = function(callbackWithPersistentDeviseModel)
                                    transform: function (doc, ret) {   delete ret._id  }
                                  });
       //"Devise" model name is "devises" collection name in mongoDB test database
+      //par convention de noms la collection a le nom du modèle
+      //sans la majuscule et avec un s en plus à la fin
       PersistentDeviseModel = mongoose.model('Devise', deviseSchema);
       
       //console.log("mongoose PersistentDeviseModel : " + PersistentDeviseModel );

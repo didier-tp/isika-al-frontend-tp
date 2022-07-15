@@ -4,9 +4,9 @@ import express from 'express';
 import produitApiRoutes from './produit-api-routes-memory.js';
 
 //var deviseApiRoutes = require('./devise-api-routes-memory')
-import deviseApiRoutes from './devise-api-routes-memory.js';
+//import deviseApiRoutes from './devise-api-routes-memory.js';
 //var deviseApiRoutes = require('./devise-api-routes-mongoose-cb')
-//import deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
+import deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
 
 
 import { dirname } from 'path';
