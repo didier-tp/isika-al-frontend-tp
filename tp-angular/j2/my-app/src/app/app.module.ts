@@ -19,6 +19,8 @@ import { ListProdComponent } from './demo/list-prod/list-prod.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DeviseComponent } from './devise/devise.component';
 import { BsUtilModule } from 'src/bs-util/bs-util.module';
+import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import { BsUtilModule } from 'src/bs-util/bs-util.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     TabsModule.forRoot(),
+    MatTabsModule,
     BsUtilModule
   ],
   providers: [],
