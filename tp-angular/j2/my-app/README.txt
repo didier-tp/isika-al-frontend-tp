@@ -8,7 +8,13 @@ NB: --force uniquement nécessaire pour que ngx-bootstrap 8 puisse fonctionner a
 ======================
 pour onglets en version material:
 
-npm install -s @angular/material depuis le répertoire my-app et verifier package.json
+npm install -s @angular/material 
+ou mieux encore
+ng add @angular/material 
+depuis le répertoire my-app et verifier package.json
+
+ajouter si besoin dans partie styles: [] de angular.json
+"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
 
 on ajoute dans src/app/app.module.ts
 import {MatTabsModule} from '@angular/material/tabs';
