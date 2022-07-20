@@ -14,10 +14,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(public preferencesService : PreferencesService) {
     //injection de dépendance par constructeur
+    console.log("dans constructeur de HeaderComponent, titre="+this.titre);
    }
 
-   
+  //ngOnInit() de angular est l'equivalent de @PostConstruct de java
   ngOnInit(): void {
+    console.log("dans ngOnInit() de HeaderComponent, titre="+this.titre);
   }
 
 //partie "menu déroulant basé sur bootstrap et le module bs-util"
