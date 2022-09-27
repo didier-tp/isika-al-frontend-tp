@@ -18,6 +18,24 @@ function racineCarree(x){
 	//return 0;
 }
 
+/*
+Serie s1 = new Serie();
+s1.add(6); s1.add(8); s1.add(10); 
+console.log("moyenne de serie s1=" + s1.moyenne());
+*/
+
+function Serie(){
+	this.somme = 0;
+	this.taille = 0;
+	this.add=function(x){
+		this.somme += x;
+		this.taille++;
+	}
+	this.moyenne=function(){
+		return this.somme / this.taille;
+	}
+}
+
 //la moitie de 16 vaut 8
 //la moitie de 10 vaut 5
 function moitie(x){
