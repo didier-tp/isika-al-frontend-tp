@@ -61,11 +61,13 @@ function addOrUpdateRowInTable(prodRef){
 	  newRow.insertCell(4).innerHTML = qte;
 	  newRow.insertCell(5).innerHTML = (prod.prix * qte).toFixed(2);
 	  
-	  newRow.addEventListener("change",(event)=>{
+	  newRow.addEventListener("click",(event)=>{
 		  console.log("event.type=" + event.type);
 		  console.log("event.target.id=" + event.target.id);
-		  let refTr = event.target.parentElement.parentElement;
+		  let refTr = event.target.parentElement;
+		  if(refTr.id=="") refTr = refTr.parentElement; //cas particulier case à cocher
 		  console.log("refTr.id=" + refTr.id);
+		 // refTr.style.backgroundColor = 'green';
 	  });
   }
 }
@@ -97,7 +99,7 @@ window.onload = function(){
 	
 	//gestion événement "change" sur liste déroulante:
 	var eltSelProd = document.getElementById("selProd");
-	eltSelProd.addEventListener("change",function(evt){
+	eltSelProd.addEventListener("change",function (evt){
 		 selectedProdRef = evt.target.value;
 		 eltSpanProdSel.innerText = 
 		   JSON.stringify(mapProduitsByRef[selectedProdRef]);
