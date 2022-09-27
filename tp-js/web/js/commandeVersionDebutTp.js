@@ -23,7 +23,8 @@ var mapSelProdQty = []; //map<selectedProd,qte> des produits avec quantité de l
 
 //fonction qui ajoute les options (sélections possible) dans la liste html:
 function initSelProd(){
-	var eltSelProd = document.getElementById("selProd");
+	let eltSelProd = document.querySelector("#selProd");
+	//let eltSelProd = document.getElementById("selProd");
 	for(let refProd in mapProduitsByRef){
 		var eltOption = document.createElement("option");
 		eltOption.innerText=mapProduitsByRef[refProd].label;
