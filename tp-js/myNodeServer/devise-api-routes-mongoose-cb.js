@@ -181,7 +181,10 @@ apiRouter.route('/devise-api/private/role-admin/devise')
 	PersistentDeviseModel.updateOne( filter , newValueOfDeviseToUpdate,
 		function(err,opResultObject){
 			//console.log(JSON.stringify(opResultObject))
-			if(err || opResultObject.matchedCount == 0){
+			if(err ){
+				res.status(500).json({ err : "erreur technique" });
+			}
+			else if(opResultObject.matchedCount == 0){
 				res.status(404).json({ err : "no devise to update with code=" 
 				                   + newValueOfDeviseToUpdate.code });
 			}else{

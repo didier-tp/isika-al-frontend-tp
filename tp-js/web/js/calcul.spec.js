@@ -2,9 +2,10 @@ describe("my calculator tests", function () {
     var p ; //Personne à tester
     
     beforeEach(function () {
-     console.log("initialisation : new ... or ..." );
      p = new Personne("alain" , "Therieur",25);
     });
+
+   
 	
     it("27ans apres 2 incrementerAge",function(){
         p.incrementerAge(); p.incrementerAge();
@@ -18,7 +19,6 @@ describe("my calculator tests", function () {
     it("le nomComplet de p est alain Therieur" , function(){
         expect(p.nomComplet()).toBe("alain Therieur");
      });
-
     
     it("2+3==5?", function () {
          expect(calculerOp('+',2,3)).toBe(5);
