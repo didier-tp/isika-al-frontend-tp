@@ -93,6 +93,14 @@ function getDeviseByCode(codeDevise){
 }
 */
 
+
+
+
+
+
+
+
+
 //module.exports.initMongooseWithSchemaAndModel = initMongooseWithSchemaAndModel;
 //module.exports.init_devise_db = init_devise_db;
 export default { initMongooseWithSchemaAndModel , init_devise_db }

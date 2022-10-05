@@ -71,7 +71,7 @@ img {
             }	
 .myflash:hover { animation: flash-anim 3s;}	
            
-.rond { transition: 0.5s ease-in-out;}
+.rond { transition: 0.9s ease-in-out;}
 .rond:hover { border-radius : 50% ; }            
 
 .tournerSurSoiMeme:hover { transform: rotate(360deg); transition: all 0.5s ease;}

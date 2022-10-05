@@ -49,7 +49,7 @@ export class MySimpleGraph {
             }
         }
         let canvasElement = document.getElementById(this.idCanvasElement);
-        let ctx = /*CanvasRenderingContext2D*/ canvasElement.getContext('2d');
+        let ctx = canvasElement.getContext('2d');
         if (MySimpleGraph.chartsMap.has(this.idCanvasElement))
             MySimpleGraph.chartsMap.get(this.idCanvasElement).destroy();
         this.chart = new Chart(ctx, {

@@ -2,6 +2,7 @@ import { Personne } from "./personnes";
 
 
 
+
  export class Employe extends Personne {
     constructor(numero:number=0,
                 prenom:string="?",

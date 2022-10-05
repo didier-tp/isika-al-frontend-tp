@@ -6,6 +6,7 @@ export interface IPerson {
 
 export class Personne{
 
+
     constructor(public numero:number|undefined = undefined, 
                 public prenom :string ="?" ,
                 public  nom:string ="?" , 
