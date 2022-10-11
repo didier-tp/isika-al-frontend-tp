@@ -1,6 +1,6 @@
 1) copier/coller de tp-angular/j1/my-app  vers votre projet my-app
 les parties:
-    src/app/data/devise.ts
+    src/app/common/data/devise.ts
     src/app/devise (tout ce répertoire avec devise.component.ts , .html , .scss)
 
 2) ajouter DeviseComponent dans partie declarations: [] de src/app/app.module.ts
@@ -20,6 +20,7 @@ src/app/devise/devise.component.html
 ---------------
 NB: dans j2 et j3 : solution de ce Tps
     dans j4 : version encore améliorée avec communication serveur (http.post/put/delete et .subscribes)
+              Serveur possible qui va avec la v4 : tp-js/myNodeServerPromiseDao ou backend-tp-api .
 
 
 
