@@ -36,6 +36,33 @@ Ordre d'amélioration conseillé:
 NB: dans j2 et j3 : solution de ce Tps
     dans j4 : version encore améliorée avec communication serveur (http.post/put/delete et .subscribes)
               Serveur possible qui va avec la v4 : tp-js/myNodeServerPromiseDao ou backend-tp-api .
+    ----------------
+    dans la v4 , les changements sont coté .ts:
 
+    on s'appuie sur constructor(private deviseService : DeviseService) {}
+    avec une version plus complète (à améliorer) de src/app/common/service/DeviseService
+    avec méthodes du genre :
+      postDevise$(d :Devise): Observable<Devise>{
+   			 const url = `${this.privateBaseUrl}/devise`;
+    		return this._http.post<Devise>(url,d /*input envoyé au serveur*/);
+    		//this.http.post<TypeReponseRetourneParServeur>(url_web_service , donnee_a_envoyer)
+  		}
+
+    exemmple (pour Add) dans devise.component.ts:
+
+    onAdd(){
+    	this.deviseService.postDevise$(this.deviseTemp)
+   		 .subscribe(
+    		 { next: (savedDevise)=>{ this.message="devise ajoutée";
+                   this.addClientSide(savedDevise); } ,
+    		  error: (err)=>{ this.message = messageFromError(err,"echec post"); }
+   		});
+  	}
+
+  addClientSide(savedDevise:Devise){
+    this.tabDevises.push(savedDevise);
+    this.onNew();
+  }
+     
 
 
