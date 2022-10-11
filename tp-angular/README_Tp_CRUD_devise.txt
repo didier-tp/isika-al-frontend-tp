@@ -40,6 +40,7 @@ NB: dans j2 et j3 : solution de ce Tps
     dans la v4 , les changements sont coté .ts:
 
     on s'appuie sur constructor(private deviseService : DeviseService) {}
+
     avec une version plus complète (à améliorer) de src/app/common/service/DeviseService
     avec méthodes du genre :
       postDevise$(d :Devise): Observable<Devise>{
