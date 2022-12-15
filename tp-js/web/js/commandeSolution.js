@@ -51,6 +51,20 @@ function addOrUpdateRowInTable(prodRef){
 	  newRow.insertCell(3).innerText = prod.prix;
 	  newRow.insertCell(4).innerText = qte;
 	  newRow.insertCell(5).innerText = qte * prod.prix;
+
+	  newRow.addEventListener("click",function(evt){
+		 console.log("evt.target.innerText="+evt.target.innerText);
+		 let eltSelectedRow = evt.target.parentElement;
+		 let eltTBody = eltSelectedRow.parentElement;
+		 let nbRows = eltTBody.rows.length;
+		 for(let i=0; i<nbRows;i++){
+			eltRow = eltTBody.rows[i];
+			if(eltRow==eltSelectedRow)
+			     eltRow.style.backgroundColor = 'yellow';
+			else 
+			   eltRow.style.backgroundColor = 'white';
+		 }
+	  })
   }
 }
 

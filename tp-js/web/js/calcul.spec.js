@@ -1,11 +1,12 @@
-describe("my calculator tests", function () {
+describe("my calculator tests", () =>{
     var p ; //Personne à tester
+    var serie; //Serie à tester
     
     beforeEach(function () {
-     p = new Personne("alain" , "Therieur",25);
-    });
+        p = new Personne("alain" , "Therieur",25);
+       });
 
-   
+    
 	
     it("27ans apres 2 incrementerAge",function(){
         p.incrementerAge(); p.incrementerAge();

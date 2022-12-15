@@ -33,7 +33,7 @@ function Serie(){
 	}
 	this.moyenne=function(){
 		//if(this.taille==0) return 0;
-		return this.somme / this.taille;
+		return this.somme / this.taille ;
 	}
 }
 
