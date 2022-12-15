@@ -4,9 +4,9 @@ import express from 'express';
 import produitApiRoutes from './produit-api-routes-memory.js';
 
 //var deviseApiRoutes = require('./devise-api-routes-memory')
-//import deviseApiRoutes from './devise-api-routes-memory.js';
+import deviseApiRoutes from './devise-api-routes-memory.js';
 //var deviseApiRoutes = require('./devise-api-routes-mongoose-cb')
-import deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
+//import deviseApiRoutes from './devise-api-routes-mongoose-cb.js';
 
 
 import { dirname } from 'path';
@@ -19,7 +19,7 @@ var app = express();
 var jsonParser = express.json({ extended: true });
 app.use(jsonParser);
 
-
+/*
 // CORS enabled with express/node-js :
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
   }
   next();
 });
-
+*/
 
 //les routes en /html/... seront gérées par express par
 //de simples renvois des fichiers statiques

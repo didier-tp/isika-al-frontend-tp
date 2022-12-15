@@ -97,8 +97,14 @@ apiRouter.route('/devise-api/private/role-admin/devise/:code')
 .delete( function(req , res  , next ) {
 	var codeDevise = req.params.code;
 	console.log("DELETE,codeDevise="+codeDevise);
-	removeDeviseInArrayByCode(allDevises,codeDevise);
-	res.send({ deletedDeviseCode : codeDevise } );
+	var deviseToDelete = findDeviseInArrayByCode(allDevises,codeDevise);
+	if(deviseToDelete){
+		removeDeviseInArrayByCode(allDevises,codeDevise);
+		res.send({ deletedDeviseCode : codeDevise } );
+	}
+	else{
+		res.status(404).json({ error : "no devise to delete with code=" + codeDevise });
+	}
 });
 
 
