@@ -55,3 +55,5 @@ describe('CalculatriceComponent', () => {
       expect(spanResElt.innerText).toContain('7');
       });
 });
+
+// ng test --watch=false --include=**/calculatrice/*.spec.ts

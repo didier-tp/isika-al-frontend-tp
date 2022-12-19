@@ -1,23 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { TvaService } from 'src/app/common/service/tva.service';
 
-import { TvaComponent } from './tva.component';
+import { TvaWithServiceComponent } from './tva-with-service.component';
 
-describe('TvaComponent', () => {
-  let component: TvaComponent;
-  let fixture: ComponentFixture<TvaComponent>;
-  
+describe('TvaWithServiceComponent', () => {
+  let component: TvaWithServiceComponent;
+  let fixture: ComponentFixture<TvaWithServiceComponent>;
 
   beforeEach(async () => {
+
+    let tvaServiceStub = {
+      tva(ht : number, tauxTvaPct : number ) : number{
+      return ht * tauxTvaPct / 100;
+      }
+    };
+
     await TestBed.configureTestingModule({
       imports: [ FormsModule] ,
-      declarations: [ TvaComponent ]
+     /*  providers : [TvaService] ,*/
+      providers: [ {provide : TvaService, 
+                   useValue : tvaServiceStub } ],
+      declarations: [ TvaWithServiceComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TvaComponent);
+    fixture = TestBed.createComponent(TvaWithServiceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -57,4 +65,5 @@ describe('TvaComponent', () => {
     
 });
 
-// ng test --watch=false --include=**/tva/*.spec.ts
+// ng test --watch=false --include=**/tva-with-service/*.spec.ts
+// ng test  --include=**/tva-with-service/*.spec.ts

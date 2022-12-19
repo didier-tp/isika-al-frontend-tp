@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
 import { BasicComponent } from './basic/basic.component';
 import { CalculatriceComponent } from './basic/calculatrice/calculatrice.component';
+import { TvaWithServiceComponent } from './basic/tva-with-service/tva-with-service.component';
 import { TvaComponent } from './basic/tva/tva.component';
 import { GardienAuth } from './common/gard/gardiens';
 import { ConversionComponent } from './conversion/conversion.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'ngr-basic', component: BasicComponent,
   children: [
    { path: 'tva', component: TvaComponent },
+   { path: 'tvaWithService', component: TvaWithServiceComponent },
    { path: 'calculatrice/:mode', component: CalculatriceComponent },
    { path: '', redirectTo: 'tva', pathMatch: 'prefix'}
    ]

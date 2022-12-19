@@ -24,6 +24,7 @@ import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyAuthInterceptor } from './common/interceptor/my-auth.interceptor';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { TvaWithServiceComponent } from './basic/tva-with-service/tva-with-service.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
     TogglePanelComponent,
     ConversionComponent,
     AdminDeviseComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    TvaWithServiceComponent
   ],
   imports: [
     BrowserModule,

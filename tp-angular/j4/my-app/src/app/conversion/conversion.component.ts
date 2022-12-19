@@ -20,7 +20,7 @@ export class ConversionComponent implements OnInit {
   constructor(private _deviseService : DeviseService) { }
 
   onConvertir(){
-        console.log("debut de onConvertir")
+        console.log("debut de onConvertir");
         this._deviseService.convertir$(this.montant,
                                       this.codeDeviseSource,
                                       this.codeDeviseCible)
@@ -44,11 +44,13 @@ export class ConversionComponent implements OnInit {
       this.codeDeviseSource = tabDevises[0].code; //valeur par défaut
       this.codeDeviseCible = tabDevises[0].code; //valeur par défaut
     }
+    console.log("fin de initListeDevises");
   }
 
   //ngOnInit() est automatiquement appelée par le framework après le constructeur
   //et après la prise en compte des injections et des éventuels @Input
   ngOnInit(): void {
+    console.log("debut de ngOnInit");
     this._deviseService.getAllDevises$()
          .subscribe({
             next: (tabDev : Devise[])=>{ this.initListeDevises(tabDev); },

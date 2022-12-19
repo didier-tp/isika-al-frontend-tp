@@ -48,8 +48,8 @@ export class CalculatriceComponent implements OnInit {
       }
     )
     //NB: params['mode'] car { path: 'calculatrice/:mode', ... },
-  }​
-
+  }
+  
   ngOnInit(): void {
   }
 
