@@ -1,0 +1,127 @@
+
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        12.2.0                                                                         │
+  │ Browser:        Firefox 108 (headless)                                                         │
+  │ Node Version:   v16.13.2 (C:\Program Files\nodejs\node.exe)                                    │
+  │ Specs:          1 found (myTest.spec.cy.js)                                                    │
+  │ Searched:       C:\tp\local-git-didier-tp-repositories\isika-al-frontend-tp\tp-angular\j4\my-a │
+  │                 pp\cypress\e2e\myTest.spec.cy.js                                               │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  myTest.spec.cy.js                                                               (1 of 1)
+
+
+  My Angular Tests
+    1) good conversion
+
+
+  0 passing (7s)
+  1 failing
+
+  1) My Angular Tests
+       good conversion:
+
+      Timed out retrying after 4000ms
+      + expected - actual
+
+      -'2'
+      +'3'
+      
+      at ./cypress/e2e/myTest.spec.cy.js/ (webpack:///./cypress/e2e/myTest.spec.cy.js:35:7)
+      at ../driver/src/cypress/cy.ts/setRunnable/runnable.fn (http://localhost:4200/__cypress/runner/cypress_runner.js:154243:43)
+      at callFn (http://localhost:4200/__cypress/runner/cypress_runner.js:107875:21)
+      at ../driver/src/cypress/runner.ts/create/onRunnableRun (http://localhost:4200/__cypress/runner/cypress_runner.js:161187:30)
+      at finallyHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:7881:23)
+      at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:11327:23)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:9262:31)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9319:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:9388:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9332:21)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:9388:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._resolveCallback (http://localhost:4200/__cypress/runner/cypress_runner.js:9182:57)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:9274:17)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9319:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:9388:18)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._resolve (http://localhost:4200/__cypress/runner/cypress_runner.js:9661:19)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._promiseFulfilled (http://localhost:4200/__cypress/runner/cypress_runner.js:9679:14)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._iterate (http://localhost:4200/__cypress/runner/cypress_runner.js:9649:31)
+      at init (http://localhost:4200/__cypress/runner/cypress_runner.js:9613:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9316:21)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:9388:18)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._resolve (http://localhost:4200/__cypress/runner/cypress_runner.js:9661:19)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._promiseFulfilled (http://localhost:4200/__cypress/runner/cypress_runner.js:9679:14)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9324:26)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill (http://localhost:4200/__cypress/runner/cypress_runner.js:9388:18)
+      at ../../node_modules/bluebird/js/release/promise_array.js/module.exports/PromiseArray.prototype._resolve (http://localhost:4200/__cypress/runner/cypress_runner.js:9661:19)
+      at ../../node_modules/bluebird/js/release/map.js/module.exports/MappingPromiseArray.prototype._promiseFulfilled (http://localhost:4200/__cypress/runner/cypress_runner.js:8487:18)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:9324:26)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:9364:10)
+      at ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:9444:18)
+      at _drainQueueStep (http://localhost:4200/__cypress/runner/cypress_runner.js:6034:12)
+      at _drainQueue (http://localhost:4200/__cypress/runner/cypress_runner.js:6027:24)
+      at ../../node_modules/bluebird/js/release/async.js/</Async.prototype._drainQueues (http://localhost:4200/__cypress/runner/cypress_runner.js:6043:16)
+      at ../../node_modules/bluebird/js/release/async.js/</Async/this.drainQueues (http://localhost:4200/__cypress/runner/cypress_runner.js:5913:14)
+
+
+
+Warning: We failed processing this video.
+
+This error will not alter the exit code.
+
+TimeoutError: operation timed out
+    at afterTimeout (C:\Users\d2fde\AppData\Local\Cypress\Cache\12.2.0\Cypress\resources\app\node_modules\bluebird\js\release\timers.js:46:19)
+    at Timeout.timeoutTimeout [as _onTimeout] (C:\Users\d2fde\AppData\Local\Cypress\Cache\12.2.0\Cypress\resources\app\node_modules\bluebird\js\release\timers.js:76:13)
+    at listOnTimeout (node:internal/timers:559:17)
+    at process.processTimers (node:internal/timers:502:7)
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      1                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  1                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     7 seconds                                                                        │
+  │ Spec Ran:     myTest.spec.cy.js                                                                │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\tp\local-git-didier-tp-repositories\isika-al-frontend-tp\tp-angular\j4\my-app     (1280x720)
+     \cypress\screenshots\myTest.spec.cy.js\My Angular Tests -- good conversion (fail               
+     ed).png                                                                                        
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ×  myTest.spec.cy.js                        00:07        1        -        1        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ×  1 of 1 failed (100%)                     00:07        1        -        1        -        -  
+
