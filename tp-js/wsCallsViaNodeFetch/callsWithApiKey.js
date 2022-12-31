@@ -166,7 +166,7 @@ async function callWithApiKeyInUrlForWheather(){
       }
     }
 
-//callWithApiKeyInUrlForChanges();
+callWithApiKeyInUrlForChanges();
 //callWithApiKeyInUrlForMovies();
-callWithApiKeyInUrlForWheather();
+//callWithApiKeyInUrlForWheather();
 //callWithApiKeyInHeaderForXyz();

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyAuthInterceptor } from './common/interceptor/my-auth.interceptor';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { TvaWithServiceComponent } from './basic/tva-with-service/tva-with-service.component';
+import { AppConfigService } from './common/service/app-config.service';
+
+//fonction d'initialiation supplementaire de l'application angular
+//ici pour charger la configuration de assets/app-config.json
+//NB: APP_INITIALIZER in providers : [ ...] below
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+      return appConfig.loadAppConfig();
+  }
+};
+
 
 @NgModule({
   declarations: [
@@ -60,7 +71,14 @@ import { TvaWithServiceComponent } from './basic/tva-with-service/tva-with-servi
       provide: HTTP_INTERCEPTORS,
       useClass: MyAuthInterceptor,
       multi: true
-      }
+    },
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfigService, IAppConfig } from '../common/service/app-config.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  message = "welcome";
+
+  constructor(private appConfigService : AppConfigService) { 
+  }
 
   ngOnInit(): void {
+    /*
+    setTimeout(()=>{
+        this.message  = this.appConfigService.config["welcomeMessage"];
+    }, 50);
+    */
+
+    this.appConfigService.configBs$.subscribe(
+      (config:IAppConfig)=>{ this.message  = config["welcomeMessage"];}
+    );
   }
 
 }
