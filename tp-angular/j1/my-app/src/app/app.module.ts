@@ -17,9 +17,10 @@ import { ZzComponent } from './demo/zz/zz.component';
 import { RegletteComponent } from './demo/reglette/reglette.component';
 import { ListProdComponent } from './demo/list-prod/list-prod.component';
 //import { TabsModule } from 'ngx-bootstrap/tabs';
-import { DeviseComponent } from './devise/devise.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooglePanelComponent } from './toogle-panel/toogle-panel.component';
+import { DeviseComponent } from './devise/devise.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ZzComponent,
     RegletteComponent,
     ListProdComponent,
+    TooglePanelComponent,
     DeviseComponent
   ],
   imports: [

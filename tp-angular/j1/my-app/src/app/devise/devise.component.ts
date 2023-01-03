@@ -34,6 +34,18 @@ export class DeviseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelectDevise(d : Devise){
+     this.selectedDevise =d;
+     this.deviseTemp = this.cloneDevise(d);
+
+  }
+
+  onUpdate(){
+    if(this.selectedDevise==undefined) return;
+    this.selectedDevise.change = this.deviseTemp.change;
+    //....
+  }
+
   //à coder en TP:
   //onNew() , onAdd() , onDelete() , onUpdate(), onSelectDevise(d : Devise )
 

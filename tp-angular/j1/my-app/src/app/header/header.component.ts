@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PreferencesService } from '../common/service/preferences.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  titre = "titre_par_defaut"
+
+  constructor(public preferencesService : PreferencesService) {
+    console.log("dans constructor , titre="+this.titre);
+   }
 
   ngOnInit(): void {
+    console.log("dans ngOnInit , titre="+this.titre);
   }
 
 }
