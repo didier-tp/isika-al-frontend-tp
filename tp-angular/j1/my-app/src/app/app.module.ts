@@ -16,8 +16,10 @@ import { DemoComponent } from './demo/demo.component';
 import { ZzComponent } from './demo/zz/zz.component';
 import { RegletteComponent } from './demo/reglette/reglette.component';
 import { ListProdComponent } from './demo/list-prod/list-prod.component';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+//import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DeviseComponent } from './devise/devise.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { DeviseComponent } from './devise/devise.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    TabsModule.forRoot()
+    /*TabsModule.forRoot(),*/
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
