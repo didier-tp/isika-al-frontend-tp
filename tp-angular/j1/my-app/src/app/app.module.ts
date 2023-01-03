@@ -19,7 +19,6 @@ import { ListProdComponent } from './demo/list-prod/list-prod.component';
 //import { TabsModule } from 'ngx-bootstrap/tabs';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TooglePanelComponent } from './toogle-panel/toogle-panel.component';
 import { DeviseComponent } from './devise/devise.component';
 
 @NgModule({
@@ -37,7 +36,6 @@ import { DeviseComponent } from './devise/devise.component';
     ZzComponent,
     RegletteComponent,
     ListProdComponent,
-    TooglePanelComponent,
     DeviseComponent
   ],
   imports: [
