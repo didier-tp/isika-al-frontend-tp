@@ -1,6 +1,11 @@
 npm install bootstrap --save
 npm install -s @fortawesome/fontawesome-free
+
+old version:
 npm install ngx-bootstrap --save --force
+
+new version:
+ng add @angular/material
 
 après git clone ou git pull , npm install --force
 NB: --force uniquement nécessaire pour que ngx-bootstrap 8 puisse fonctionner avec angular 14

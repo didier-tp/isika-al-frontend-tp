@@ -11,7 +11,8 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { RootComponent } from './components/root/root.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { SharedModule } from '../shared/shared.module';
     CoreRoutingModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [
     {
