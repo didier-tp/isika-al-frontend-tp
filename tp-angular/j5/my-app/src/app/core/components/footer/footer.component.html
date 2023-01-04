@@ -1,0 +1,6 @@
+<p class="piedpage">footer - couleurFondPreferee:
+    <select [(ngModel)]="preferencesService.couleurFondPreferee" >
+        <option *ngFor="let c of listeCouleurs" [ngValue]="c">{{c}}</option>
+    </select> - username={{sessionService.user.username}} - roles={{sessionService.user.roles}}
+</p>
+

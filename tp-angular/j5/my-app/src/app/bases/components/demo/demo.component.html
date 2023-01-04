@@ -1,0 +1,16 @@
+<s-toggle-panel title="synchronisation via BehaviorSubject">
+    <bases-seuil></bases-seuil>
+    <p>nbProd : {{nbProdPrixInferieurSeuilMaxi}}</p>
+    <hr/>
+    <bases-list-prod></bases-list-prod>
+</s-toggle-panel>
+<p></p>
+<s-toggle-panel title="custom event @Output()">
+    <bases-reglette width="200" (changeEvent)="onChangeCurseur($event)"></bases-reglette>
+    curseur = {{valeurCurseur}}
+</s-toggle-panel>
+<p></p>
+<s-toggle-panel title="maître/détails">
+    <bases-zz></bases-zz>
+</s-toggle-panel>
+<p></p>

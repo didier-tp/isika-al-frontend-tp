@@ -1,0 +1,22 @@
+src/app
+   core   (root module with singletons , home/welcome component, ...)
+   shared (shared module of things that will be reused in others modules)
+   xxx  (features_module , ex: bases)
+   yyy  (features_module , ex: devises)
+   zzz  (other features modules)
+
+-------------------
+Each module may have this sub-structure:
+...
+  components
+  gards
+  pipes
+  models
+  directives
+  services
+  ... (utils, configs, ...)
+
+--------------------------
+src/app/app.module is now  src/app/core/core.module with CoreModule in src/main.ts
+src/app/app.routing.module is now  src/app/core/core.routing.module
+src/app/app.component is now  src/app/core/components/root/root.component.ts with core-root in index.html
