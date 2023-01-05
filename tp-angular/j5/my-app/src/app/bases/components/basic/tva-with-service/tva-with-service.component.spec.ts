@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { TvaService } from 'src/app/common/service/tva.service';
+import { TvaService } from 'src/app/bases/services/tva.service';
+
 
 import { TvaWithServiceComponent } from './tva-with-service.component';
 

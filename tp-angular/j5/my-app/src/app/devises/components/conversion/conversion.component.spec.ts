@@ -1,11 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { DeviseService } from '../common/service/devise.service';
+
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Devise } from '../../models/devise';
+import { DeviseService } from '../../services/devise.service';
 import { ConversionComponent } from './conversion.component';
-import { Devise } from '../common/data/devise';
+
 
 describe('ConversionComponent', () => {
   let component: ConversionComponent;
