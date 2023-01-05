@@ -57,3 +57,5 @@ describe('CalculatriceComponent', () => {
 });
 
 // ng test --watch=false --include=**/calculatrice/*.spec.ts
+// ng test --include=**/calculatrice/*.spec.ts
+

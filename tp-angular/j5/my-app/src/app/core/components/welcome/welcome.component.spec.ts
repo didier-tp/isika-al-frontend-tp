@@ -21,3 +21,5 @@ describe('WelcomeComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+//ng test  --include=**/welcome/*.spec.ts

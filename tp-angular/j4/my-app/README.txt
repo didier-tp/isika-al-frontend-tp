@@ -31,3 +31,12 @@ près de la ligne 75:
 ============
 NB: cette application angular est compatible avec le backend "backend-tp-api"
 et également avec le backend "myNodeServerPromiseDao" (avec un léger micro-décalage sur le put devise.name/nom)          
+
+===============
+pour éviter conflit entre cypress et angular,
+il faut ajouter ceci dans tsconfig.json:
+    ,
+    "exclude": [
+      "cypress.config.ts",
+      "cypress/**/*.ts"
+    ]

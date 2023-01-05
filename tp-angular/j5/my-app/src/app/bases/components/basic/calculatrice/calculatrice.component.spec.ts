@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { BasesRoutingModule } from 'src/app/bases/bases-routing.module';
+
 
 import { CalculatriceComponent } from './calculatrice.component';
 
@@ -10,7 +11,7 @@ describe('CalculatriceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FormsModule , AppRoutingModule] ,
+      imports: [ FormsModule , BasesRoutingModule] ,
       declarations: [ CalculatriceComponent ]
     })
     .compileComponents();
@@ -57,3 +58,4 @@ describe('CalculatriceComponent', () => {
 });
 
 // ng test --watch=false --include=**/calculatrice/*.spec.ts
+// ng test  --include=**/calculatrice/*.spec.ts
