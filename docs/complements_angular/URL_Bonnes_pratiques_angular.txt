@@ -1,0 +1,35 @@
+bon article mais un peu ancien:
+--------------------------------
+https://adrien.pessu.net/post/angular_best_practices/
+
+
+très bon article accessible et moderne:
+---------------------------------------
+https://famzil.medium.com/les-meilleurs-pratiques-%C3%A0-adopter-angular-92a581f551a3
+
+ET
+https://www.tektutorialshub.com/angular/angular-folder-structure-best-practices/   (pour exemple de repertoires)
+https://medium.com/@shijin_nath/angular-right-file-structure-and-best-practices-that-help-to-scale-2020-52ce8d967df5
+https://blogs.halodoc.io/angular-best-practices/
+
+https://aglowiditsolutions.com/blog/angular-best-practices/ (idem en anglais)
+
+https://www.ideas2it.com/blogs/angular-development-best-practices/ (en anglais)
+
+
+
+
+-------------------------------------------------------------------------------
+
+bonnes pratiques un peu élémentaires:
+---------------------------------------------------
+https://nicolasfazio.ch/programmation/angular/template-binding-bonnes-pratiques
+
+
+
+bonnes pratiques avancées/complexes (pour experts):
+---------------------------------------------------
+https://angular-enterprise.com/fr/ngpost/cours/bonne-pratiques/
+
+
+

@@ -1,0 +1,7 @@
+    Les TU en Angular
+    Les bonnes pratiques de développement et organisation d’un projet (organisation des dossiers, liens entre classes, services et composants)
+    La gestion des versions des dépendances
+    Les différences de construction en mode développement ou production
+    L’externalisation de variables d’environnement pour le déploiement
+
+ 
