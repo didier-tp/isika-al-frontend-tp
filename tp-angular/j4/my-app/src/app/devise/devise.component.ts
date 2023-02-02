@@ -15,6 +15,10 @@ export class DeviseComponent implements OnInit {
     return JSON.parse(JSON.stringify(d));
   }
 
+  identifyDevise(index:unknown, item:Devise){
+    return item.code; 
+ }
+
   tabDevises : Devise[] = [];
 
   selectedDevise : Devise | undefined;

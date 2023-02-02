@@ -21,4 +21,4 @@ describe('TvaService', () => {
     });
 });
 
-// ng test --watch=false --include=**/service/tva.service.spec.ts
+// ng test --include=**/service/tva.service.spec.ts

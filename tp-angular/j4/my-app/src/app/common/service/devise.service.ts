@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Devise } from '../data/devise';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, flatMap, map, mergeMap, toArray } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 
@@ -65,6 +65,25 @@ export class DeviseService {
     const url = `${this.privateBaseUrl}/devise`;
     return this._http.put<Devise>(url,d /*input envoyé au serveur*/);
     //this.http.put<TypeReponseRetourneParServeur>(url_web_service , donnee_a_envoyer)
+  }
+
+  //jeux de données (en dur) pour pré-version (simulation asynchrone)
+  private _devises : Devise[] = [
+    new Devise('EUR','euro',1.0),
+    new Devise('USD','dollar',1.1),
+    new Devise('GBP','livre',0.9),
+    new Devise('JPY','Yen',128.5)
+  ];
+
+  public getAllDevisesSimu$() : Observable<Devise[]>{
+    return of(this._devises)
+           .pipe(
+           		mergeMap(dInTab=>dInTab) ,
+		          filter((p) => p.change <= 1.2) ,
+           		map((d : Devise)=>{d.name = d.name.toUpperCase(); return d;}) ,
+           		toArray(),
+              map((tabDevise)=>tabDevise.sort((d1,d2)=>d1.change-d2.change))
+           );
   }
 
 }

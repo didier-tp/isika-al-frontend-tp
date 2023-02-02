@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable , of } from 'rxjs';
-import { map , flatMap ,toArray ,filter, mergeMap} from 'rxjs/operators';
+import { map ,toArray ,filter, mergeMap, take} from 'rxjs/operators';
 
 export interface ProduitV2 {
   numero : number;
@@ -57,7 +57,8 @@ export class ProduitService {
     map((p : ProduitV2)=>{p.label = p.label.toUpperCase(); return p;}) ,
     filter((p) => p.prix <= prixMaxi) ,
     toArray(),
-    map( tabP => tabP.sort( (p1,p2) => p1.prix - p2.prix))
+    map( tabP => tabP.sort( (p1,p2) => p1.prix - p2.prix)),
+    take(1)
     );
     }
 

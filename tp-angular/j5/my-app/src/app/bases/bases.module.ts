@@ -12,6 +12,7 @@ import { ZzComponent } from './components/demo/zz/zz.component';
 import { BasesRoutingModule } from './bases-routing.module';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { C3Component } from './components/c3/c3.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     ZzComponent,
     RegletteComponent,
     ListProdComponent,
-    TvaWithServiceComponent
+    TvaWithServiceComponent,
+    C3Component
   ],
   imports: [
     CommonModule,

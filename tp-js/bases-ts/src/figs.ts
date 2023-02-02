@@ -20,9 +20,9 @@
   }
   
   /*export*/ class Circle  extends Fig2D{
-    constructor(public xC:number = 0 ,
-                public yC:number = 0  ,
-                public r:number = 0,
+    constructor(public xC :number = 0 ,
+                public yC : number = 0  ,
+                public r :number = 0,
                 lineColor : string = "black",
                 lineWidth : number = 1,
                 fillColor : string|undefined = undefined){

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../../models/login'
 import { LoginResponse } from '../../models/loginResponse';
-import { LoginService } from '../../services/login.service';
 import { SessionService } from '../../services/session.service';
 import { messageFromError } from '../../../shared/utils/util';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'core-login',
