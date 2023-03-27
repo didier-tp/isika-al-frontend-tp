@@ -14135,9 +14135,14 @@ ou bien tout simplement <code>npm install</code> si est <code>cypress</code> dé
 <li>Lancer la commande <code>npx cypress open</code></li>
 </ul>
 <div class="alert alert-block alert-info">
-    <b>Remarque</b> : Le premier lancement va permettre la création de <code>cypress.json</code>, du sous-répertoire <code>cypress</code> et des sous-répertoires <code>cypress/integration</code>, ...
-    </div><p>Apres un lancement de <code>cypress open</code> , il faut en théorie choisir un test à lancer au sein de la fenêtre de sélection. Nous devons cependant écrire préalablement notre propre test.</p>
-<p><img src="./Pictures/CaptureSelectionTestCypress.PNG" alt=""></p>
+    <b>Remarque</b> : Le premier lancement (avec un choix de E2E testing) va permettre la création de <code>cypress.config.js</code>, du sous-répertoire <code>cypress</code> et de quelques sous-répertoires .
+    En cliquant sur  <b>continue</b> on peut choisir un navigateur (ex: <i>Chrome</i>) puis dans la nouvelle fenêtre on pourra choisir <b>create new spec</b> avec comme nom <b>cypress/e2e/myTest.spec.cy.js</b>    
+    </div><p><img src="./Pictures/CaptureNpxRunCypress.PNG" alt=""></p>
+<p><img src="./Pictures/CaptureNpxRunCypressContinueE2E.PNG" alt=""></p>
+<p><img src="./Pictures/CaptureNpxRunCypressChoixNavigateur.PNG" alt=""></p>
+<p><img src="./Pictures/Capture_createMyNewSpec.PNG" alt=""></p>
+<p><img src="./Pictures/Capture_createMyTestSpec.PNG" alt=""></p>
+<p>Apres un lancement de <code>cypress open</code> , il faut en théorie choisir un test à lancer au sein de la fenêtre de sélection. Nous devons cependant commencer par mieux écrire notre nouveau test.</p>
 <ul>
 <li>À arrêter (en fermant cette fenêtre) et à relancer ultérieurement.</li>
 </ul>
@@ -14147,7 +14152,7 @@ ou bien tout simplement <code>npm install</code> si est <code>cypress</code> dé
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="%C3%89criture-d'un-nouveau-test-Cypress">&#201;criture d'un nouveau test Cypress<a class="anchor-link" href="#%C3%89criture-d'un-nouveau-test-Cypress">&#182;</a></h2><ul>
-<li>Au sein du répertoire <code>tp-js/basic_html_test_cypress/cypress/integration</code>, créer le nouveau fichier <code>myTest.spec.js</code> comportant le code suivant :</li>
+<li>Au sein du répertoire <code>tp-js/basic_html_test_cypress/cypress/e2e</code>, créer ou bien modifier le fichier <code>myTest.spec.cy.js</code> qui comportera à peu près le code suivant :</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;My HTML/JS Tests&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;good addition in calculatriceV3.html&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -14218,12 +14223,19 @@ ou bien tout simplement <code>npm install</code> si est <code>cypress</code> dé
 <span class="p">})</span>
 </pre></div>
 <ul>
-<li>Ajuster éventuellement le fichier <code>cypress.json</code> de la façon suivante :<div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="nt">&quot;video&quot;</span> <span class="p">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-</pre></div>
-</li>
+<li>Ajuster éventuellement le fichier <code>cypress.config.js</code> de la façon suivante :</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;cypress&quot;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="nx">e2e</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">setupNodeEvents</span><span class="p">(</span><span class="nx">on</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// implement node event listeners here</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="nx">video</span> <span class="o">:</span> <span class="kc">false</span>
+<span class="p">});</span>
+</pre></div>
 
 </div>
 </div>
@@ -14238,7 +14250,7 @@ ou bien tout simplement <code>npm install</code> si est <code>cypress</code> dé
 </ul>
 <p><code>lite-server</code></p>
 <div class="alert alert-block alert-info">
-    <b>Remarque</b> : Futur arrêt via <code>Ctrl-C</code>
+    <b>Remarque</b> : http://localhost:3000  et  Futur arrêt via <code>Ctrl-C</code>
     </div>
 </div>
 </div>
@@ -14247,12 +14259,12 @@ ou bien tout simplement <code>npm install</code> si est <code>cypress</code> dé
 <h2 id="Lancement-d'un-test-Cypress">Lancement d'un test Cypress<a class="anchor-link" href="#Lancement-d'un-test-Cypress">&#182;</a></h2><ul>
 <li>Lancer la commande suivante sur une seule ligne (depuis le répertoire du projet <code>basic_html_test_cypress</code>) :</li>
 </ul>
-<p><code>npx cypress run --spec "cypress/integration/myTest.spec.js" --browser chrome &gt;test_report.txt</code></p>
+<p><code>npx cypress run --spec "cypress/e2e/myTest.spec.cy.js" --browser chrome &gt;test_report.txt</code></p>
 <ul>
 <li>Remarques :<ul>
-<li>Option <code>--headless</code> possible pour ne pas montrer le navigateur sous contrôle</li>
+<li>Option <code>headless</code> par défaut pour ne pas montrer le navigateur sous contrôle</li>
 <li>En absence de l'option <code>--browser chrome</code> alors le navigateur "electron" utilisé par défaut</li>
-<li>Placer <code>"video" : false</code> dans <code>cypress.json</code> permet de désactiver l'enregistrement vidéo</li>
+<li>Ajouter dans e2e:{ ...} (à la fin) , <code>"video" : false</code> dans <code>cypress.config.js</code> permet de désactiver l'enregistrement vidéo</li>
 </ul>
 </li>
 </ul>
