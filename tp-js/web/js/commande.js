@@ -18,27 +18,19 @@ var selectedProdRef = 'p1';  //référence vers produit séléctionné
 var mapSelProdQty = []; //map<selectedProd,qte> des produits avec quantité de la commande
 //clef = ref produit , valeur = quantite
 
-function affTabAssociatif(tab){
-	for(clef in tab){
-		console.log(clef + "-" + JSON.stringify(tab[clef]));
-	}
-}
-
 //NB: mapProduitsByRef , selectedProdRef , mapSelProdQty sont
 //à considérer comme des variables globales (visibles par toutes les fonctions)
 
 //fonction qui ajoute les options (sélections possible) dans la liste html:
 function initSelProd(){
-	//var eltSelProd = document.getElementById("selProd");
-	var eltSelProd = document.querySelector("#selProd"); //meme syntaxe que selecteur css
-	//document.querySelectorAll() existe egalement
+	let eltSelProd = document.querySelector("#selProd");
+	//let eltSelProd = document.getElementById("selProd");
 	for(let refProd in mapProduitsByRef){
 		var eltOption = document.createElement("option");
 		eltOption.innerText=mapProduitsByRef[refProd].label;
 		eltOption.value=refProd;
 		eltSelProd.appendChild(eltOption);
 	}
-	affTabAssociatif(mapProduitsByRef);
 }
 
 function addOrUpdateRowInTable(prodRef){
@@ -46,29 +38,28 @@ function addOrUpdateRowInTable(prodRef){
   var qte = mapSelProdQty[prodRef];
   
   var existingRow = document.getElementById("r_"+prodRef);
-  if(existingRow){
+  if(existingRow /* != null sous enetendu en js */ ){
 	  existingRow.cells[4].innerText = qte;
-	  existingRow.cells[5].innerText = (qte * prod.prix).toFixed(2);
+	  existingRow.cells[5].innerText = qte * prod.prix;
   }
   else{ //nouvelle ligne
 	  var eltTbody = document.getElementById("bodyTableau");
 	  var newRow = eltTbody.insertRow(-1) ;
 	  newRow.setAttribute("id","r_"+prodRef);
-	  newRow.insertCell(0).innerHTML = "<input type='checkbox' id='id_cb'></input>";
+	  newRow.insertCell(0).innerHTML = "<input type='checkbox'></input>";
 	  newRow.insertCell(1).innerHTML = prod.ref;
-	  newRow.insertCell(2).innerHTML = prod.label;
+	  let tdLabel = newRow.insertCell(2);
+	  tdLabel.innerText = prod.label;
+	  tdLabel.id = "label_" + prod.label;
 	  newRow.insertCell(3).innerHTML = prod.prix;
-	  newRow.insertCell(4).innerHTML = qte;
-	  newRow.insertCell(5).innerHTML = (prod.prix * qte).toFixed(2);
-	  
-	  newRow.addEventListener("click",(event)=>{
-		  console.log("event.type=" + event.type);
-		  console.log("event.target.id=" + event.target.id);
-		  let refTr = event.target.parentElement;
-		  if(refTr.id=="") refTr = refTr.parentElement; //cas particulier case à cocher
-		  console.log("refTr.id=" + refTr.id);
-		 // refTr.style.backgroundColor = 'green';
-	  });
+	  newRow.insertCell(4).innerHTML = qte ;
+	  newRow.insertCell(5).innerHTML = qte * prod.prix;
+	  //...
+
+	  newRow.addEventListener("click" , function (evt){
+		console.log("evt.target.id=" + evt.target.id);
+		console.log("evt.target.type=" + evt.target.type);
+	  })
   }
 }
 
@@ -76,17 +67,30 @@ function deleteSelectedRowInTable(){
 	 var eltTbody = document.getElementById("bodyTableau");
 	 var nbRows  = eltTbody.rows.length;
 	 //console.log("nbRows="+nbRows);
+	 
 	 for(let i=nbRows-1; i>=0 ; i--){
 		 var tRow = eltTbody.rows[i];
 		 var isSelected = tRow.cells[0].firstChild.checked;
 		 if(isSelected){
-			 refProdToDelete = tRow.cells[1].innerText;
-			 console.log("refProdToDelete=" + refProdToDelete);
-			 delete mapSelProdQty[refProdToDelete];
-			 eltTbody.deleteRow(i);
+			eltTbody.deleteRow(i); //supprime la ligne d'index i dans le tableau 
+			let prodRef = tRow.cells[1].innerText;
+			console.log("prodRef="+prodRef);
+			mapSelProdQty[prodRef]=0;
 		 }
 	 }
-	 affTabAssociatif(mapSelProdQty);
+    
+	/*
+	 //for(let i in eltTbody.rows){
+	for(let i=0; i<=nbRows-1; i++){
+		var tRow = eltTbody.rows[i];
+		var isSelected = tRow.cells[0].firstChild.checked;
+		if(isSelected){
+		   eltTbody.deleteRow(i); //supprime la ligne d'index i dans le tableau 
+		   let prodRef = tRow.cells[1].innerText;
+		   console.log("prodRef="+prodRef);
+		   mapSelProdQty[prodRef]=0;
+		}
+	}*/
 }
 
 window.onload = function(){
@@ -99,24 +103,24 @@ window.onload = function(){
 	
 	//gestion événement "change" sur liste déroulante:
 	var eltSelProd = document.getElementById("selProd");
-	eltSelProd.addEventListener("change",function (evt){
+	eltSelProd.addEventListener("change",function(evt){
 		 selectedProdRef = evt.target.value;
 		 eltSpanProdSel.innerText = 
 		   JSON.stringify(mapProduitsByRef[selectedProdRef]);
 	});
 	
 	var eltBtnAdd = document.getElementById("btnAdd");
-	eltBtnAdd.addEventListener("click",   (evt)=>{
+	eltBtnAdd.addEventListener("click",function(evt){
 		var eltQte = document.getElementById("qte");
 		mapSelProdQty[selectedProdRef]=Number(eltQte.value);
 		addOrUpdateRowInTable(selectedProdRef);
 	});
 	
 	var eltBtnSuppr = document.getElementById("btnSuppr");
-	/*
+	//eltBtnSuppr.addEventListener("click",deleteSelectedRowInTable);
 	eltBtnSuppr.addEventListener("click",function(evt){
+		console.log("evt.target.id=" + evt.target.id);
+		console.log("evt.target.type=" + evt.target.type);
 		deleteSelectedRowInTable();
 	});
-	*/
-	eltBtnSuppr.addEventListener("click",deleteSelectedRowInTable);
 }

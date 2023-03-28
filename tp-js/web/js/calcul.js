@@ -32,7 +32,7 @@ function Serie(){
 		this.taille++;
 	}
 	this.moyenne=function(){
-		//if(this.taille==0) return 0;
+		if(this.taille==0) return 0;
 		return this.somme / this.taille ;
 	}
 }
