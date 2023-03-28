@@ -20,12 +20,12 @@
 
 
   My HTML/JS Tests
-    √ good addition in calculatriceV3.html (700ms)
-    √ good multiplication in calculatriceV3.html (392ms)
-    √ Historique cache ou bien affiche (523ms)
+    √ good addition in calculatriceV3.html (873ms)
+    √ good multiplication in calculatriceV3.html (468ms)
+    √ Historique cache ou bien affiche (591ms)
 
 
-  3 passing (3s)
+  3 passing (4s)
 
 
   (Results)
@@ -37,10 +37,18 @@
   │ Pending:      0                                                                                │
   │ Skipped:      0                                                                                │
   │ Screenshots:  0                                                                                │
-  │ Video:        false                                                                            │
-  │ Duration:     2 seconds                                                                        │
+  │ Video:        true                                                                             │
+  │ Duration:     3 seconds                                                                        │
   │ Spec Ran:     myTest.spec.cy.js                                                                │
   └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Started processing:  Compressing to 32 CRF                                                     
+  -  Finished processing: 1 second                                                   
+
+  -  Video output: C:\tp\local-git-didier-tp-repositories\isika-al-frontend-tp\tp-js\basic_html_test_cypress\cypress\videos\myTest.spec.cy.js.mp4
 
 
 ====================================================================================================
@@ -50,7 +58,7 @@
 
        Spec                                              Tests  Passing  Failing  Pending  Skipped  
   ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
-  │ √  myTest.spec.cy.js                        00:02        3        3        -        -        - │
+  │ √  myTest.spec.cy.js                        00:03        3        3        -        -        - │
   └────────────────────────────────────────────────────────────────────────────────────────────────┘
-    √  All specs passed!                        00:02        3        3        -        -        -  
+    √  All specs passed!                        00:03        3        3        -        -        -  
 
