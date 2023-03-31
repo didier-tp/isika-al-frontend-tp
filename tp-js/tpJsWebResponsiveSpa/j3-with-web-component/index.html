@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>tpJsWebResponsiveSpa</title>
+ <!-- link rel="stylesheet" href="./css/bootstrap.min.css" > -->
+<link rel="stylesheet" href="./css/my-custom-bootstrap.css"> 
+ <link rel="stylesheet" type="text/css" href="css/styles.css" />
+ <link rel="stylesheet" type="text/css" href="css/layout.css" />
+ <link rel="stylesheet" type="text/css" href="css/selonPlace.css" />
+ <link rel="stylesheet" type="text/css" href="css/defilement.css" />
+ <link rel="stylesheet" type="text/css" href="css/avec-transparence.css" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- for responsive bootstrap on mobile device -->
+ <script src="lib/bootstrap.bundle.min.js"></script>
+ <script src="js/my_ajax_util.js"></script>
+ <script src="js/my_spa_util.js"></script>
+ <script src="web-components/toggle-panel-component.js" ></script>
+ <script src="web-components/global-layout-component.js" ></script>
+ <script src="web-components/form-group-component.js" ></script>
+ <script src="web-components/simple-menu-component.js" ></script>
+<script>
+ function switchContent(partName){
+ switch(partName){
+	case "graph" :
+	    loadJsScript("lib/chart.3.7.1.min.js");
+		loadJsScript("js/graph.js", function(){
+			loadSubPart("idAlternativeSubPart","sp_graph.html","start_graph()")
+		});	break;
+	default:
+		loadJsScript(`js/${partName}.js`, function(){
+			loadSubPart("idAlternativeSubPart",`sp_${partName}.html`,`start_${partName}()`)
+		});	break;
+	}
+}
+
+window.onload=function(){
+	document.getElementById("simpleMenuComponent").addEventListener('nav',(navEvt)=>{ 
+					//console.log('received nav event = ' + navEvt);
+					let currentMenuItem = navEvt.value;
+					//console.log("navEvt.value=" + navEvt.value);
+					switchContent(currentMenuItem);
+				})
+	switchContent("welcome");
+}
+</script>
+</head>
+<body>
+  <global-layout-component>
+        <header slot="mainHeader">
+            <h4> (header) entete de page (logo, ...) with-web-component </h4>
+        </header>
+        <nav slot="lateralPanel">
+            <simple-menu-component id="simpleMenuComponent" 
+			items="['welcome', 'news' , 'euroToFranc' ,'graph' , 'calculatrice' , 'effets' , 'dessin' , 'dom_crud_devise', 'media' , 'transparence']" >
+			</simple-menu-component>
+        </nav>
+        <main slot="mainContent">
+			<div id="idAlternativeSubPart">...</div>
+			<!--
+            <div class="myFlexRowNowrap">
+				<section class="flexItem">
+				  <div id="idAlternativeSubPart">...</div>
+				</section>
+				<section class="siPlaceSuffisante">
+						<div class="maPublicite">
+						texte<br/>
+						ou<br/>
+						image <br/>
+						de <br/>
+						pub<br/>
+						...<br/>
+					  </div>
+				</section>
+			</div>
+		-->
+        </main>
+        <footer slot="mainFooter">
+            <h4>(footer) pied de page (liens, mentions légales)</h4>
+        </footer>
+   </global-layout-component> 
+</body>
+</html>

@@ -1,7 +1,7 @@
 
 function startGraph(){
 
-
+var myChart=null;
 var btnDraw = document.getElementById("btnDraw");
 
 btnDraw.addEventListener("click",function(event){
@@ -28,11 +28,9 @@ btnDraw.addEventListener("click",function(event){
 	}
 	var dy=(yMax-yMin)/100;
 	console.log(pointValues);
-	try{
-	   Chart.instances[0].destroy();
-	}
-	catch(e){}
-	var myChart = new Chart(ctx, {
+	if(myChart)
+		 myChart.destroy();
+	myChart = new Chart(ctx, {
   type: 'line',
   data: {
     datasets: [{

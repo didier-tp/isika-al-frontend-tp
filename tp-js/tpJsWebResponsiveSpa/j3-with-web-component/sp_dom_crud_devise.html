@@ -1,0 +1,40 @@
+<h1>CRUD en mémoire via javascript et api DOM</h1>
+<!-- Devise : code:EUR , nom=Euro , change=1 -->
+<form role="form">
+  <div class="f-form-group-wrap">
+    <label for="code" class="f-align">code:</label>
+    <div class="f-align">
+      <input type="text"  class="f-max-size" id="code" />
+    </div> 
+  </div>
+  <div class="f-form-group-wrap">
+    <label for="nom" class="f-align">nom:</label>
+    <div class="f-align">
+      <input type="text" class="f-max-size" id="nom" />
+    </div>
+  </div>
+  <div class="f-form-group-wrap">
+    <label for="change" class="f-align">change:</label>
+    <div class="f-align">
+      <input type="text" class="f-max-size" id="change" />
+    </div>
+  </div>
+  <div class="f-form-group-wrap">
+    <label  class="f-align"></label>
+    <div class="f-align">
+       <input type="button" onclick="newDevise()" value="New"/>
+       <input type="button" id="bntAdd" onclick="ajoutDevise()" value="Add"/> 
+       <input type="button" id="bntUpdate" onclick="updateDevise()" value="Update"/>
+       <input type="button" id="bntDelete" onclick="deleteDevise()" value="Delete"/> 
+    </div>
+  </div>
+</form>
+<h3>liste des Devises<h3>
+<table border="1" id="tableDevises">
+  <thead>
+   <tr><th>code</th><th>nom</th><th>change</th></tr>
+</thead>
+<tbody id="bodyTableau">
+  <!-- <tr id="tr_USD"><td>USD</td><td>Dollar</td><td>1.1</td></tr> -->
+</tbody>
+</table>

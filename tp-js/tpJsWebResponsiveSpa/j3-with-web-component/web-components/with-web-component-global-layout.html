@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>with-web-component2</title>
+    <script src="./toggle-panel-component.js" ></script>
+    <script src="./global-layout-component.js" ></script>
+    <script src="./form-group-component.js" ></script>
+    <script src="./simple-menu-component.js" ></script>
+	<link rel="stylesheet" href="./styles.css" type="text/css" > 
+    <script>
+        window.onload = function(){
+            document.getElementById("submitBtn").addEventListener('click',(evt)=>{
+                let dataObj = { nom : document.getElementById("nom").value,
+                                prenom : document.getElementById("prenom").value};
+                document.getElementById("spanMsg").innerHTML=JSON.stringify(dataObj);
+            })
+
+            document.getElementById("simpleMenuComponent").addEventListener('nav',(navEvt)=>{ 
+                //console.log('received nav event = ' + navEvt);
+                let currentMenuItem = navEvt.value;
+                //console.log("navEvt.value=" + navEvt.value);
+                document.getElementById("currentNav").innerHTML="<b>" +currentMenuItem + "</b>";
+            })
+        }
+    </script>
+</head>
+
+<body>
+   <global-layout-component>
+        <header slot="mainHeader">
+            <h4> (header) entete de page (logo, ...) with-web-component2 </h4>
+        </header>
+        <nav slot="lateralPanel">
+            <simple-menu-component id="simpleMenuComponent" items="['welcome', 'm2']" ></simple-menu-component>
+        </nav>
+        <main slot="mainContent">
+
+            <p>current nav (selected menuItem): <span id="currentNav"></span></p>
+            <toggle-panel-component label="p1">
+                <div>p1 content</div>
+             </toggle-panel-component>
+          
+             <toggle-panel-component label="user">
+              <form onsubmit="return false;">
+                  <f-group label="prenom"> <input type="text"  id="prenom" /> </f-group>
+                  <f-group label="nom"> <input type="text"   id="nom" /> </f-group>
+                  <f-group> <span> <button id="submitBtn">submit</button> </span> </f-group>
+                  <f-group> <span id="spanMsg"></span> </f-group>
+              </form> 
+            </toggle-panel-component>
+        </main>
+        <footer slot="mainFooter">
+            <h4>(footer) pied de page (liens, mentions légales)</h4>
+        </footer>
+   </global-layout-component> 
+</body>
+</html>
