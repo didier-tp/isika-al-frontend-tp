@@ -1,0 +1,43 @@
+.group-col{
+	flex: 1;  
+    display: flex;
+    flex-direction: column; 
+    margin: 0.5em 5px;
+}
+
+.sel-group{
+    display: flex;
+    flex-flow: row wrap; 
+	align-items : flex-start;
+	column-gap: 6px;
+	row-gap: 4px;
+	justify-content: start;
+	/* nb: justify-content est applicable que si aucun element comporte flex-grow different de 0 */
+}
+
+.sel-group label{
+    flex: 0 0;
+	min-width:5em;
+}
+
+/* attention , l'ordre des min-width est important du plus petit au plus grand !!!
+   xs, sm , md , lg , xl */
+@media screen and (max-width : 36em){
+	.w-row {
+		display: flex;
+		flex-direction: column; 
+	}
+}
+
+@media screen and (min-width:36em ){
+    .w-row {
+		display: flex;
+		flex-direction: row; 
+	}
+}
+
+/*
+@media screen and (min-width:64em){
+
+}
+*/
