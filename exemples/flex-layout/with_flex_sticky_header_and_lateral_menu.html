@@ -1,0 +1,52 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="flex-layout.css"/>
+  <title>titre</title>
+  <script>
+     var toggleM = true;
+     function onToggleMenu(){
+	    toggleM= !toggleM;
+		document.getElementById("toggleMenuBtn").innerHTML=toggleM?"&lt;":"&gt;";
+		document.getElementById("lateralPanel").style.display=toggleM?"flex":"none";
+	 }
+  </script>
+</head>
+<!-- -------------------------------------------------------------- -->
+<body>
+<div class="flexAllInColumnDir">
+  <div  class="stickyInFlex" id="allHeader">
+    <div class="flexAllInRowDir withCenterItems">
+		<div class="stickyInFlex" >
+			<button onclick="onToggleMenu()" id="toggleMenuBtn" >&lt;</button>
+		</div>
+		 <header class="remainingContentInFlex" id="mainHeader">
+			  <h4 >(header) entete de page (logo, ...)</h4>
+		 </header>
+    </div>
+  </div>
+  <div class="remainingContentInFlex">
+	  <div class="flexAllInColumnDir">
+	     <div class="flexAllInRowDir remainingContentInFlex">
+		    <div class="stickyInFlex" id="lateralPanel">
+			  <div class="flexAllInColumnDir withCenterItems">
+			      <button class="myMenuItem">b1</button>
+				  <button class="myMenuItem">bouton2</button>
+				  <button class="myMenuItem">menu3</button>
+			  </div>
+			</div>
+			<main class="remainingContentInFlex">
+			...aaa...<br/>...bbb...<br/>...ccc...<br/>...ddd...<br/>...eee...<br/>
+			...fff...<br/>...ggg...<br/>...hhh...<br/>...iii...<br/>...jjj...<br/>
+			<hr/>
+			...aaa...<br/>...bbb...<br/>...ccc...<br/>...ddd...<br/>...eee...<br/>
+			...fff...<br/>...ggg...<br/>...hhh...<br/>...iii...<br/>...jjj...<br/>
+			</main>
+		</div>
+		<footer id="mainFooter" class="stickyInFlex">
+		  <h4>(footer) pied de page (liens, mentions légales)</h4>
+		</footer>
+	  </div>
+  </div>
+</div>
+</body>
+</html>
