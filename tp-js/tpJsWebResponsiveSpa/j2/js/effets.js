@@ -1,12 +1,15 @@
 
 function startEffets() {
 	
-  var image1 = document.getElementById("image1");
-  var btnStart = document.getElementById("btnDemarrerAnimationSurImage1");
+  let image1 = document.getElementById("image1");
+  const image2 = document.getElementById("image2");
+  const btnStart = document.getElementById("btnDemarrerAnimationSurImage1");
   btnStart.addEventListener('click',function (){
 	     image1.style.animation = "none"; //stop before restart
+       image2.style.animation = "none";
 		 setTimeout( () =>  {
 	       image1.style.animation = "secouer-anim 4s";
+         image2.style.animation = "caddy-anim 4s";
 		 } , 2); //a small delay (ex: 2 ms ) is necessary
   });
   

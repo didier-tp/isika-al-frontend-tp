@@ -79,6 +79,15 @@ img {
 .noirEtblanc { filter: grayscale(100%);  transition:  10s linear;}
 .noirEtblanc:hover { filter: grayscale(0); }
 
+@keyframes caddy-anim {
+  20% { border : 8px solid red; transform: scale(1);}
+  40% { border : 0px; transform: scale(0.8); }
+  60% { border : 8px solid red; transform: scale(1);}
+  80% { border : 0px; transform: scale(0.8);}
+  100% { border : 8px solid red; transform: scale(1);}
+}
+
+
 @keyframes secouer-anim {
     0% {
       transform: rotate(10deg);

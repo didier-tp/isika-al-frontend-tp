@@ -1,7 +1,9 @@
 "use strict";
-var a;
+let a;
 a = 6;
 console.log(a);
-var b = 6;
-//b="abc";
+//let b :number = 6;
+let b = 6; // :number implicite déduit par le compilateur
+b = 8;
+//b="abc"; //erreur détectée par le compilateur
 //# sourceMappingURL=f1.js.map

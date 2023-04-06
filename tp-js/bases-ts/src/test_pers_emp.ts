@@ -1,5 +1,5 @@
-import { Employe } from "./employes";
-import { IPerson, Personne } from "./personnes";
+import { Employe } from "./employes.js";
+import { Personne, IPerson } from "./personnes.js";
 
 
 let p1 : Personne;
