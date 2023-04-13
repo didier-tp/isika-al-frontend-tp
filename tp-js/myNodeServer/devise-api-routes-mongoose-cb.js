@@ -57,7 +57,6 @@ apiRouter.route('/devise-api/public/devise/:code')
 
 
 
-
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
 .get( function(req , res  , next ) {
@@ -87,6 +86,8 @@ apiRouter.route('/devise-api/public/devise-conversion')
 			});
 		});
 })
+
+
 
 /*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD

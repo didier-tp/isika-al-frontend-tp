@@ -19,7 +19,7 @@ export class LoginService {
 
   public postLogin$(login: Login): Observable<LoginResponse>{
      let url = this._apiBaseUrl +"/public/auth";
-     sessionStorage.setItem('authToken',"");//reinit before try get token
+     sessionStorage.setItem('access_token',"");//reinit before try get token
      return this._http.post<LoginResponse>(url,login, {headers: this._headers} )
             .pipe(
                 tap((loginResponse)=>{ this.sauvegarderJeton(loginResponse);})
