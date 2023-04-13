@@ -1,0 +1,5 @@
+{
+    "xyBaseUrl": "http://localhost:8000/xy-api",
+    "color" : "red",
+    "welcomeMessage" : "WELCOME to my-app (j4_oauth2)"
+}
