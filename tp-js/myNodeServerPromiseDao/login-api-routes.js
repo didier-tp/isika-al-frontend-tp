@@ -30,8 +30,8 @@ et url secondaire (en //) login-api/private/role_admin/xyz pour compatibilité a
 
 //*******************************************
 
-//exemple URL: http://localhost:8282/login-api/private/reinit
-apiRouter.route('/login-api/private/reinit')
+//exemple URL: http://localhost:8282/login-api/public/reinit
+apiRouter.route('/login-api/public/reinit')
 .get( async function(req , res  , next ) {
 	try{
 		let doneActionMessage = await loginDao.reinit_db();
@@ -44,7 +44,7 @@ apiRouter.route('/login-api/private/reinit')
 
 //exemple URL: http://localhost:8282/login-api/public/login/user1
 apiRouter.route(['/login-api/private/login/:username' ,
-                 '/login-api/private/role_admin/login/:username'])
+                 '/login-api/public/login/:username'])
 .get( async function(req , res  , next ) {
 	var username = req.params.username;
 	try{
@@ -57,7 +57,7 @@ apiRouter.route(['/login-api/private/login/:username' ,
 
 //exemple URL: http://localhost:8282/login-api/public/login (returning all logins)
 apiRouter.route(['/login-api/private/login' ,
-                  '/login-api/private/role_admin/login' ])
+                  '/login-api/public/login' ])
 .get( async function(req , res  , next ) {
 	var criteria={};
 	try{
@@ -71,7 +71,7 @@ apiRouter.route(['/login-api/private/login' ,
 // http://localhost:8282/login-api/private/login en mode post
 // avec { "username" : "user3" , "password" : "pwduser3" , "roles" : "user" } dans req.body
 apiRouter.route([ '/login-api/private/login',
-                  '/login-api/private/role_admin/login'])
+                  '/login-api/public/login'])
 .post(async function(req , res  , next ) {
 	var nouveauLogin = req.body;
 	console.log("POST,nouveauLogin="+JSON.stringify(nouveauLogin));
@@ -133,7 +133,7 @@ apiRouter.route('/login-api/public/auth')
 // http://localhost:8282/login-api/private/login en mode PUT
 // avec { "username" : "user3" , "password" : "pwduser3" , "roles" : "admin" } dans req.body
 apiRouter.route([ '/login-api/private/login',
-                  '/login-api/private/role_admin/login'])
+                  '/login-api/public/login'])
 .put( async function(req , res  , next ) {
 	var newValueOfloginToUpdate = req.body;
 	console.log("PUT,newValueOfloginToUpdate="+JSON.stringify(newValueOfloginToUpdate));
@@ -148,7 +148,7 @@ apiRouter.route([ '/login-api/private/login',
 
 // http://localhost:8282/login-api/private/login/user1 en mode DELETE
 apiRouter.route([ '/login-api/private/login/:username',
-                  '/login-api/private/role_admin/login/:username'])
+                  '/login-api/public/login/:username'])
 .delete( async function(req , res  , next ) {
 	var username = req.params.username;
 	console.log("DELETE,username="+username);

@@ -17,14 +17,11 @@ function initMongooseWithSchemaAndModel () {
     mongoose.Connection = thisDb;
       thisSchema = new mongoose.Schema({
         _id: { type : String , alias : "code" } ,
-        nom: { type : String , alias : "name" } ,
+        name:  String ,
         change : Number
       });
      
-      //NB: initialement/habituellement  nom: { type : String  } ou bien  name: { type : String  }
-      //ici/exceptionellement nom: { type : String , alias : "name" } pour des raisons
-      //de compatibilité entre plusieurs versions des clients/frontends (angular , ... : 2018 à 2022)
-
+     
       thisSchema.set('id',false); //no default virtual id alias for _id
       thisSchema.set('toJSON', { virtuals: true , 
                                    versionKey:false,
@@ -39,20 +36,18 @@ initMongooseWithSchemaAndModel();
 
 function reinit_db(){
   return new Promise( (resolve,reject)=>{
-      const deleteAllFilter = { }
-      ThisPersistentModel.deleteMany( deleteAllFilter, function (err) {
-        if(err) { 
-          console.log(JSON.stringify(err));
-          reject(err);
-        }
-        //insert elements after deleting olds
-        (new ThisPersistentModel({ code : "EUR" , nom : "Euro" , change : 1.0})).save();
-        (new ThisPersistentModel({ code : "USD" , nom : "Dollar" , change : 1.1})).save();
-        (new ThisPersistentModel({ code : "GBP" , nom : "Livre" , change : 0.9})).save();
-        (new ThisPersistentModel({ code : "JPY" , nom : "Yen" , change : 123.7})).save();
-        resolve({action:"devises collection re-initialized in mongoDB database"})
+    const deleteAllFilter = { }
+    ThisPersistentModel.deleteMany( deleteAllFilter)
+    .then(()=>{ //insert elements after deleting olds
+      (new ThisPersistentModel({ code : "EUR" , name : "Euro" , change : 1.0})).save();
+      (new ThisPersistentModel({ code : "USD" , name : "Dollar" , change : 1.1})).save();
+      (new ThisPersistentModel({ code : "GBP" , name : "Livre" , change : 0.9})).save();
+      (new ThisPersistentModel({ code : "JPY" , name : "Yen" , change : 123.7})).save();
+      resolve({action:"devises collection re-initialized in mongoDB database"})
       })
-  });
+    .catch((err)=>{ console.log(JSON.stringify(err)) ; 
+                    reject({error : "cannot delete in database" , cause : err}); }  );
+});
 }
 
 function findById(id) {

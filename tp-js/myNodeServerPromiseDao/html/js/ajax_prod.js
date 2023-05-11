@@ -21,8 +21,8 @@ function initProdFromNewInput(){
 function onSelectRow(evt){
   let selectedTD = evt.target;
   let idSelectedRow=(selectedTD.parentNode).id;
-  let codeOfSelectedProd = idSelectedRow.substring(2); //after p_
-  makeAjaxGetRequest("../produit-api/public/produit/"+codeOfSelectedProd,function(data){
+  let idOfSelectedProd = idSelectedRow.substring(2); //after p_
+  makeAjaxGetRequest("../produit-api/public/produit/"+idOfSelectedProd,function(data){
 	var selectedProd = JSON.parse(data);
 	displaySelectedProd(selectedProd);
   });
@@ -36,7 +36,7 @@ function callbackAfterUpdate(data){
 function onUpdateProd(evt){
 	var prod = initProdFromNewInput();
 	var jsonData = JSON.stringify(prod);//new value to send to backend
-	var url = "../produit-api/private/produit"
+	var url = "../produit-api/public/produit"
 	makeAjaxPutRequest(url,jsonData,callbackAfterUpdate,errCallback)
 }
 

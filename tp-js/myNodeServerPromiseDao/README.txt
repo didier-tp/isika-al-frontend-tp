@@ -4,6 +4,7 @@ npm install -s axios
 =======================
 cette application a été adaptée/enrichie le 9/6/2022 de manière à offrir les memes fonctionnalités de backend-tp-api
 et peut ainsi être utilisée en arrière plan du tp angular
+Depuis mai 2023, cette application a été rendué compatible mongoose 7 et adopte des URL simplifiées (sans partie /role_admin)
 ===========
 npm install -s jsonwebtoken
 ===========
