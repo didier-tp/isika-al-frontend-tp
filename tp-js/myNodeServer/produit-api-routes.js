@@ -66,10 +66,10 @@ apiRouter.route('/produit-api/public/produit')
     }
 });
 
-// http://localhost:8282/produit-api/private/role-admin/produit en mode post
+// http://localhost:8282/produit-api/private/produit en mode post
 // avec { "code" : null , "nom" : "produitXy" , "prix" : 12.3 }
 //ou bien { "nom" : "produitXy" , "prix" : 12.3 }dans req.body
-apiRouter.route('/produit-api/private/role-admin/produit')
+apiRouter.route('/produit-api/private/produit')
 .post( function(req , res , next ) {
     let nouveauProduit = req.body;
     //console.log("req.body="+req.body);
@@ -83,9 +83,9 @@ apiRouter.route('/produit-api/private/role-admin/produit')
     res.send(nouveauProduit);
 });
 
-// http://localhost:8282/produit-api/private/role-admin/produit en mode PUT
+// http://localhost:8282/produit-api/private/produit en mode PUT
 // avec { "code" : 1 , "nom" : "produit_xy" , "prix" : 16.3 } dans req.body
-apiRouter.route('/produit-api/private/role-admin/produit')
+apiRouter.route('/produit-api/private/produit')
 .put( function(req , res , next ) {
     let newValueOfProduitToUpdate = req.body;
     console.log("PUT,newValueOfProduitToUpdate="
@@ -102,9 +102,9 @@ apiRouter.route('/produit-api/private/role-admin/produit')
     }
 });
 
-// http://localhost:8282/produit-api/private/role-admin/produit/1 
+// http://localhost:8282/produit-api/private/produit/1 
 // en mode DELETE
-apiRouter.route('/produit-api/private/role-admin/produit/:code')
+apiRouter.route('/produit-api/private/produit/:code')
 .delete( function(req , res , next ) {
     let codeProduit = req.params.code;
     console.log("DELETE,codeProduit="+codeProduit);

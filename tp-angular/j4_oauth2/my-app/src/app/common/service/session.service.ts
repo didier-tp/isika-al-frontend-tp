@@ -34,8 +34,8 @@ export class SessionService {
       //for old v14 of keycloack ---> issuer: 'http://localhost:8989/auth/realms/myrealm',
       //issuer: 'https://localhost:8443/keycloak/realms/myrealm',
 
+      issuer: 'https://www.d-defrance.fr/keycloak/realms/myrealm',
       //issuer: 'https://www.d-defrance.fr:443/keycloak/realms/myrealm',
-      issuer: 'https://www.d-defrance.fr:8443/keycloak/realms/myrealm',
       //issuer: 'http://localhost:8989/keycloak/realms/myrealm',
   
       // URL of the SPA to redirect the user to after login

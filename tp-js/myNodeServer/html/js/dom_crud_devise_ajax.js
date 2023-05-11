@@ -14,7 +14,7 @@ window.onload = function(){
 
 function reInitEmptyDevise(){
     idSelected=undefined;
-    currentDevise={ code : "" , nom : "" , change : "" };
+    currentDevise={ code : "" , name : "" , change : "" };
     displayDevise(currentDevise);
     zoneMsg.innerHTML="";
 }
@@ -42,7 +42,7 @@ function postNewDeviseWithAjax(nouvelleDevise){
     /*makeAjaxPostRequest( .....URL QUI VA BIEN ..... ,
                         nouvelleDevise AU FORMAT JSON ,  
                         afterPostNewDeviseWithAjaxCallback);*/
-    makeAjaxPostRequest( "../devise-api/private/role-admin/devise" ,
+    makeAjaxPostRequest( "../devise-api/private/devise" ,
                         JSON.stringify(nouvelleDevise) ,  
                        afterPostNewDeviseWithAjaxCallback); 
     //*******************************************************
@@ -59,7 +59,7 @@ function afterPostNewDeviseWithAjaxCallback(texteReponse){
 }
 
 function putNewValueOfExistingDeviseWithAjax(deviseToUpdate){
-    makeAjaxPutRequest("../devise-api/private/role-admin/devise" ,
+    makeAjaxPutRequest("../devise-api/private/devise" ,
                         JSON.stringify(deviseToUpdate) ,  
                         afterPutNewValueOfExistingDeviseWithAjaxCallback);
 }
@@ -73,7 +73,7 @@ function deleteOldDeviseWithAjax(oldDevise){
     //************ A FAIRE EN TP ***************************
     // var deleteUrl = URL qui va bien avec le bon code devise a supprimer à la fin
     //***************************************
-    let deleteUrl= "../devise-api/private/role-admin/devise/" + oldDevise.code
+    let deleteUrl= "../devise-api/private/devise/" + oldDevise.code
     console.log("deleteUrl=" +deleteUrl)
     makeAjaxDeleteRequest(deleteUrl , afterDeleteOldDeviseWithAjaxCallback , displayMessage);
 }
@@ -120,14 +120,14 @@ function readDevise(devise){
     //récuperer le contenu des zones saisies (code , nom , change)
     //et peupler les parties de l'objet devise existant
     devise.code = zoneCode.value;
-    devise.nom = zoneNom.value;
+    devise.name = zoneNom.value;
     devise.change = Number(zoneChange.value);
 }
 
 function displayDevise(devise){
     //afficher les parties de l'objet devise dans les zones de la page
      zoneCode.value=devise.code ;
-     zoneNom.value=devise.nom ;
+     zoneNom.value=devise.name ;
      zoneChange.value=devise.change;
 }
 
@@ -139,7 +139,7 @@ function ajoutDevise(){
 
     var nouvelleDevise = {
          code : valCode,
-         nom : valNom,
+         name : valNom,
          change : valChange
       } 
      if(testValidId(valCode)){ 
@@ -245,7 +245,7 @@ function addDeviseRow(devise){
         mettreEnValeurLigneSelectionnee(newRow);
     }); 
     newCell1.innerHTML = devise.code;
-    newRow.insertCell(1).innerHTML = devise.nom;
+    newRow.insertCell(1).innerHTML = devise.name;
     newRow.insertCell(2).innerHTML = devise.change;
 }
 
@@ -256,7 +256,7 @@ function remplacerValeursDeLigneDansTableau(devise){
           //var listeTd = trAModif.querySelectorAll("td");
           var listeTd = trAModif.getElementsByTagName("td");
           listeTd[0].innerHTML=devise.code;
-          listeTd[1].innerHTML=devise.nom;
+          listeTd[1].innerHTML=devise.name;
           listeTd[2].innerHTML=devise.change;
        }
 }

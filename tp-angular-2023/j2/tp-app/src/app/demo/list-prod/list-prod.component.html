@@ -1,0 +1,13 @@
+<p>list-prod </p>
+<table class="table table-bordered table-striped">
+   <thead>
+      <tr><th>numero</th><th>label</th><th>prix</th></tr> 
+   </thead>
+   <tbody>
+      <tr *ngFor="let prod of listeProduits">
+         <td>{{prod.numero}}</td>
+         <td>{{prod.label}}</td>
+         <td>{{prod.prix}}</td> 
+      </tr>
+   </tbody>
+</table>

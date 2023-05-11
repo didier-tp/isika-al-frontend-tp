@@ -36,7 +36,7 @@ function callbackAfterUpdate(data){
 function onUpdateProd(evt){
 	var prod = initProdFromNewInput();
 	var jsonData = JSON.stringify(prod);//new value to send to backend
-	var url = "../produit-api/private/role-admin/produit"
+	var url = "../produit-api/private/produit"
 	makeAjaxPutRequest(url,jsonData,callbackAfterUpdate,errCallback)
 }
 

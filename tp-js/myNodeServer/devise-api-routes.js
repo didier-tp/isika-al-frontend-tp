@@ -4,13 +4,13 @@ const apiRouter = express.Router();
 
 var allDevises = [];
 
-allDevises.push({ code : 'EUR' , nom : 'Euro' , change : 1.0 });
-allDevises.push({ code : 'USD' , nom : 'Dollar' , change : 1.1 });
-allDevises.push({ code : 'JPY' , nom : 'Yen' , change : 123 });
-allDevises.push({ code : 'GBP' , nom : 'Livre' , change : 0.9 }); 
+allDevises.push({ code : 'EUR' , name : 'Euro' , change : 1.0 });
+allDevises.push({ code : 'USD' , name : 'Dollar' , change : 1.1 });
+allDevises.push({ code : 'JPY' , name : 'Yen' , change : 123 });
+allDevises.push({ code : 'GBP' , name : 'Livre' , change : 0.9 }); 
 
 function findDeviseInArrayByCode(devises,code){
-	var devise=null;
+	let devise=null;
 	for(let i in devises){
 		if(devises[i].code == code){
 			  devise=devises[i]; break;
@@ -20,7 +20,7 @@ function findDeviseInArrayByCode(devises,code){
 }
 
 function removeDeviseInArrayByCode(devises,code){
-	var delIndex;
+	let delIndex;
 	for(let i in devises){
 		if(devises[i].code == code){
 			  delIndex=i; break;
@@ -32,7 +32,7 @@ function removeDeviseInArrayByCode(devises,code){
 }
 
 function findDevisesWithChangeMini(devises,changeMini){
-	var selDevises=[];
+	let selDevises=[];
 	for(let i in devises){
 		if(devises[i].change >= changeMini){
 			  selDevises.push(devises[i]);
@@ -64,26 +64,42 @@ apiRouter.route('/devise-api/public/devise')
 	}
 });
 
+//exemple URL: http://localhost:8282/devise-api/public/convert?amount=50&source=EUR&target=USD
+apiRouter.route('/devise-api/public/convert')
+.get( async  function(req , res  , next ) {
+	let montant = Number(req.query.amount);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.target;
+	let deviseSource = findDeviseInArrayByCode(allDevises,codeDeviseSource);
+	let deviseCible = findDeviseInArrayByCode(allDevises,codeDeviseCible);
+	let montantConverti = montant * deviseCible.change / deviseSource.change;
+		res.send ( { amount : montant , 
+					source :codeDeviseSource , 
+					target : codeDeviseCible ,
+					result : montantConverti});
+		
+});
 
-// http://localhost:8282/devise-api/private/role-admin/devise en mode post
-// avec { "code" : "mxy" , "nom" : "monnaieXy" , "change" : 123 } dans req.body
-apiRouter.route('/devise-api/private/role-admin/devise')
+
+// http://localhost:8282/devise-api/private/devise en mode post
+// avec { "code" : "mxy" , "name" : "monnaieXy" , "change" : 123 } dans req.body
+apiRouter.route('/devise-api/private/devise')
 .post( function(req , res  , next ) {
-	var nouvelleDevise = req.body;
+	let nouvelleDevise = req.body;
 	console.log("POST,nouvelleDevise="+JSON.stringify(nouvelleDevise));
 	allDevises.push(nouvelleDevise);
 	res.send(nouvelleDevise);
 });
 
-// http://localhost:8282/devise-api/private/role-admin/devise en mode PUT
-// avec { "code" : "USD" , "nom" : "Dollar" , "change" : 1.123 } dans req.body
-apiRouter.route('/devise-api/private/role-admin/devise')
+// http://localhost:8282/devise-api/private/devise en mode PUT
+// avec { "code" : "USD" , "name" : "Dollar" , "change" : 1.123 } dans req.body
+apiRouter.route('/devise-api/private/devise')
 .put( function(req , res  , next ) {
 	var newValueOfDeviseToUpdate = req.body;
 	console.log("PUT,newValueOfDeviseToUpdate="+JSON.stringify(newValueOfDeviseToUpdate));
 	var deviseToUpdate = findDeviseInArrayByCode(allDevises,newValueOfDeviseToUpdate.code);
 	if(deviseToUpdate!=null){
-		deviseToUpdate.nom = newValueOfDeviseToUpdate.nom;
+		deviseToUpdate.name = newValueOfDeviseToUpdate.name;
 		deviseToUpdate.change = newValueOfDeviseToUpdate.change;
 		res.send(deviseToUpdate);
 	}else{
@@ -92,8 +108,8 @@ apiRouter.route('/devise-api/private/role-admin/devise')
 	
 });
 
-// http://localhost:8282/devise-api/private/role-admin/devise/EUR en mode DELETE
-apiRouter.route('/devise-api/private/role-admin/devise/:code')
+// http://localhost:8282/devise-api/private/devise/EUR en mode DELETE
+apiRouter.route('/devise-api/private/devise/:code')
 .delete( function(req , res  , next ) {
 	var codeDevise = req.params.code;
 	console.log("DELETE,codeDevise="+codeDevise);

@@ -1,0 +1,24 @@
+<div class="myWrapFlexbox">
+    <div class="myColItem">
+        <h3>catégorie à selectionner:</h3>
+        <ul>
+            <li *ngFor="let c of listeCategories"
+                (click)="onSelectCategorie(c)"
+                [class.selected]="c==categorie">{{c}}</li>
+        </ul> <br/>
+    </div>
+    <div class="myColItem" *ngIf="categorie">
+        <h3>produits de la catégorie {{categorie}} :</h3>
+        <table class="table table-bordered table-striped" > 
+            <thead>
+                <tr> <th>ref</th> <th>label</th> <th>prix</th> </tr> 
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of listeProduits" > 
+                    <td>{{p.ref}}</td> <td>{{p.label}}</td> <td>{{p.prix}}</td> 
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+</div>
+

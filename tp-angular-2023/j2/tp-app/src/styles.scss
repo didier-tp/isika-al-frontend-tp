@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+input.ng-valid[required] {
+    border-left: 5px solid  #42A948; /* green */
+  }
+
+input.ng-invalid {
+    border-left: 5px solid  #a94442; /* red */
+}
+
+::placeholder {
+  font-style: italic;
+  font-size: x-small;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
