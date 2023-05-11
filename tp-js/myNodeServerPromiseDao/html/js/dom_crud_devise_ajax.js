@@ -7,6 +7,7 @@ var zoneMsg;
 var idSelected; 
 var currentDevise;
 var tabDevises = []; // A synchroniser (via api REST) avec le coté serveur
+var publicOrPrivateUrlPart="public";
 
 window.onload = function(){
     initialiserPage();
@@ -19,13 +20,17 @@ function reInitEmptyDevise(){
     zoneMsg.innerHTML="";
 }
 
-function displayMessage(txt){
-    zoneMsg.innerHTML=txt?txt:"";
+function displayMessage(txt,status){
+    if(status){
+       zoneMsg.innerHTML=txt?`txt=${txt} [${status}]`:"";
+    }else{
+       zoneMsg.innerHTML=txt?txt:"";
+    }
 }
 
 function loadDevisesWithAjax(){
     //************ CODE A ANALYSER ET COMPRENDRE EN TP ***************************
-    makeAjaxGetRequest("../devise-api/public/devise" ,  function(texteReponse){
+    makeAjaxGetRequest(`../devise-api/public/devise` ,  function(texteReponse){
         tabDevises = JSON.parse(texteReponse /* au format json string */);
         /* //old simulated values:
         tabDevises.push({code:'EUR' , nom : 'Euro' , change : 1})
@@ -42,9 +47,9 @@ function postNewDeviseWithAjax(nouvelleDevise){
     /*makeAjaxPostRequest( .....URL QUI VA BIEN ..... ,
                         nouvelleDevise AU FORMAT JSON ,  
                         afterPostNewDeviseWithAjaxCallback);*/
-    makeAjaxPostRequest( "../devise-api/private/devise" ,
+    makeAjaxPostRequest( `../devise-api/${publicOrPrivateUrlPart}/devise` ,
                         JSON.stringify(nouvelleDevise) ,  
-                       afterPostNewDeviseWithAjaxCallback); 
+                       afterPostNewDeviseWithAjaxCallback, displayMessage); 
     //*******************************************************
 }
 
@@ -59,13 +64,13 @@ function afterPostNewDeviseWithAjaxCallback(texteReponse){
 }
 
 function putNewValueOfExistingDeviseWithAjax(deviseToUpdate){
-    makeAjaxPutRequest("../devise-api/private/devise" ,
+    makeAjaxPutRequest(`../devise-api/${publicOrPrivateUrlPart}/devise?v=true` ,
                         JSON.stringify(deviseToUpdate) ,  
-                        afterPutNewValueOfExistingDeviseWithAjaxCallback);
+                        afterPutNewValueOfExistingDeviseWithAjaxCallback , displayMessage);
 }
 
 function afterPutNewValueOfExistingDeviseWithAjaxCallback(texteReponse){
-        updatedDevise = JSON.parse(texteReponse /* au format json string */);
+        let updatedDevise = JSON.parse(texteReponse );
         remplacerValeursDeLigneDansTableau(updatedDevise);
 }
 
@@ -73,7 +78,7 @@ function deleteOldDeviseWithAjax(oldDevise){
     //************ A FAIRE EN TP ***************************
     // var deleteUrl = URL qui va bien avec le bon code devise a supprimer à la fin
     //***************************************
-    let deleteUrl= "../devise-api/private/devise/" + oldDevise.code
+    let deleteUrl= `../devise-api/${publicOrPrivateUrlPart}/devise/${oldDevise.code}?v=true`;
     console.log("deleteUrl=" +deleteUrl)
     makeAjaxDeleteRequest(deleteUrl , afterDeleteOldDeviseWithAjaxCallback , displayMessage);
 }
@@ -114,6 +119,11 @@ function initialiserPage(){
     document.getElementById("bntUpdate").disabled = true; 
     document.getElementById("bntDelete").disabled = true; 
     reInitEmptyDevise();
+    document.getElementById("selSecurityLevel").value="public";//by default
+    document.getElementById("selSecurityLevel").addEventListener("change" , function(evt){
+        publicOrPrivateUrlPart=evt.target.value;
+    })
+    
 }
 
 function readDevise(devise){

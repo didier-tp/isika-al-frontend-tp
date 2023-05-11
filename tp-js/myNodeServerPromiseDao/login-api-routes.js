@@ -1,23 +1,10 @@
 import express from 'express';
 const apiRouter = express.Router();
-
+import { statusCodeFromEx , nullOrEmptyObject } from "./generic-express-util.js";
 import loginDao from './login-dao-mongoose.js';
 var PersistentLoginModel = loginDao.ThisPersistentModel; //to use only for specific extra request (not in dao)
 
 import jwtUtil from './jwt-util.js';
-
-function statusCodeFromEx(ex){
-	let status = 500;
-	let error = ex?ex.error:null ; 
-	switch(error){
-		case "BAD_REQUEST" : status = 400; break;
-		case "NOT_FOUND" : status = 404; break;
-		//...
-		case "CONFLICT" : status = 409; break;
-		default: status = 500;
-	}
-	return status;
-}
 
 /*
 Nouvelle convention d'URL :
@@ -86,7 +73,7 @@ apiRouter.route([ '/login-api/private/login',
 //submitting authRequest (login) via post
 //response = authResponse with token:
 // http://localhost:8282/login-api/public/auth en mode post
-// avec { "username" : "admin1" , "password" : "pwdadmin1" , "roles" : "admin" } dans req.body
+// avec { "username" : "admin1" , "password" : "pwdadmin1" } dans req.body
 apiRouter.route('/login-api/public/auth')
 .post(async function(req , res  , next ) {
 	let  authReq  =  req.body;
@@ -97,30 +84,16 @@ apiRouter.route('/login-api/public/auth')
 	try{
 		let login = await loginDao.findById( authReq.username);
 		if(login && login.password == authReq.password){
-			let arrayUserRoles = login.roles.split(',');
-        	let arrayAskedRoles = authReq.roles.split(',');
-        	let okRoles=true;
-        	for(let askedRole of arrayAskedRoles){
-            	if(!arrayUserRoles.includes(askedRole))
-              	 okRoles=false;
-        	}
-        	if(okRoles==true){
-				authResponse.message="successful login";
-				authResponse.roles=authReq.roles;
-				authResponse.status=true;
-				authResponse.token=jwtUtil.buildJwtToken(authReq.username,authReq.roles);
-				res.send(authResponse);
-			}else{
-				authResponse.message="login failed (good username/password but no asked roles="+authReq.roles+")";
-				authResponse.status=false;
-				res.status(401).send(authResponse);
-			}
+			authResponse.message="successful login";
+			authResponse.roles=login.roles;
+			authResponse.status=true;
+			authResponse.token=jwtUtil.buildJwtToken(authReq.username,login.roles);
+			res.send(authResponse);
 		}else{
 			authResponse.message="login failed (wrong password)";
 			authResponse.status=false;
 			res.status(401).send(authResponse);
 		}
-	
     } catch(ex){
 		authResponse.message="login failed (wrong username)";
         authResponse.status=false;

@@ -8,6 +8,12 @@
 <body id="main" >
    
    <h1>CRUD / AJAX (Devises)</h1>
+<hr/>
+   security level : <select id="selSecurityLevel">
+    <option>public</option>
+    <option value="private">private (login/token required)</option>
+  </select> 
+ <hr/>
    <!-- Devise : code:EUR , nom=Euro , change=1 -->
    code: <input id="code" type="text" /> <br/>
    name: <input id="nom" type="text" /> <br/>
@@ -28,5 +34,7 @@
 	   <!-- <tr id="tr_USD"><td>USD</td><td>Dollar</td><td>1.1</td></tr> -->
 	 </tbody>
    </table>
+   <hr/>
+   <a href="./index.html">retour vers index</a>
 </body>
 </html>
