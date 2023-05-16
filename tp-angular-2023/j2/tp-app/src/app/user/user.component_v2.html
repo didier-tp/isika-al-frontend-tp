@@ -1,0 +1,23 @@
+<h3>User (UserAccount)</h3>
+<form #formUser="ngForm">
+    <label>id:</label>{{user.id}} <br/>  
+    <label>username:</label>
+       <input [(ngModel)]="user.username" name="username" required pattern="^[a-zA-Z].+" /> <br/>   
+    <label>firstName:</label>
+       <input [(ngModel)]="user.firstName"  name="firstname"/>  <br/> 
+    <label>lastName:</label>
+       <input [(ngModel)]="user.lastName" name="lastname"/>  <br/> 
+    <label>email:</label>
+       <input [(ngModel)]="user.email" name="email"/> <br/> 
+    <label>newPassword:</label>
+       <input [(ngModel)]="user.newPassword" required minlength="3" name="newPassword" > <br/> 
+    <label>mainGroup:</label>
+        <select [(ngModel)]="user.mainGroup" name="mainGroup" > 
+            <option>user_of_sandboxrealm</option>
+            <option>manager_of_sandboxrealm</option>
+            <option>admin_of_sandboxrealm</option>
+        </select> <br/>
+    <button (click)="onSave()" [disabled]="!formUser.form.valid"> Save</button> &nbsp;
+    <button (click)="onFetchFromUsername()" >  Fetch From Username </button> <br/>
+</form>
+message: {{message}}

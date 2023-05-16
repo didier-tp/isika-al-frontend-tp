@@ -16,6 +16,10 @@
 */target
 */.project
 */.classpath
+*/.angular
+*/.cache
+**/.angular
+**/.cache
 */mylog.txt
 
 */*.iml

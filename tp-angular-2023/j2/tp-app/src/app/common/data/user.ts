@@ -18,5 +18,5 @@ le mot de passe (confidentiel) ne sera jamais retourné en mode get
 si newPassword n'est pas renseigné , on ne souhaite pas modifier le mot de passe
 si newPassword différent de null , alors affectation (en mode POST) ou changement (en mode PUT) du mot de passe
 Les champs email , firstName et lastName ne sont pas indispensables
-Exemples de valeurs pour mainGroup : "admin_of_sandoxrealm" , "manager_of_sandboxrealm" , ""user_of_sandboxrealm""
+Exemples de valeurs pour mainGroup : "admin_of_sandoxrealm" , "manager_of_sandboxrealm" , "user_of_sandboxrealm"
 */

@@ -6,17 +6,14 @@ import { ProduitService } from 'src/app/common/service/produit.service';
   templateUrl: './seuil.component.html',
   styleUrls: ['./seuil.component.scss']
 })
-export class SeuilComponent implements OnInit {
+export class SeuilComponent {
 
   public seuilMax=100; //à saisir
 
-  onSeuilChange(){
-    this._produitService.changerSeuil(this.seuilMax);
-  }
-
   constructor(private _produitService : ProduitService) { }
 
-  ngOnInit(): void {
+  onSeuilChange(){
+    this._produitService.changerSeuil(this.seuilMax);
   }
 
 }

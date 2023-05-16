@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable , of } from 'rxjs';
-import { map , flatMap ,toArray ,filter, mergeMap} from 'rxjs/operators';
+import { map ,toArray ,filter, mergeMap} from 'rxjs/operators';
 
-export interface ProduitV2 {
+export interface MonProduit {
   numero : number;
   label : string;
   prix : number;
@@ -49,12 +49,12 @@ export class ProduitService {
 
   //convention de nommage : nom de methode se terminant par $ 
   //pour indiquer type de retour de type Observable
-  public rechercherProduitSimu$(prixMaxi : number) : Observable<ProduitV2[]> {
+  public rechercherProduitSimu$(prixMaxi : number) : Observable<MonProduit[]> {
   
     return of(this.tabProduit)
     .pipe(
     mergeMap(pInTab=>pInTab) ,
-    map((p : ProduitV2)=>{p.label = p.label.toUpperCase(); return p;}) ,
+    //map((p : MonProduit)=>{p.label = p.label.toUpperCase(); return p;}) ,
     filter((p) => p.prix <= prixMaxi) ,
     toArray(),
     map( tabP => tabP.sort( (p1,p2) => p1.prix - p2.prix))
