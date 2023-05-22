@@ -19,6 +19,18 @@ function findDeviseInArrayByCode(devises,code){
 	return devise;
 }
 
+function findDeviseNonBloquantInArrayByCode(devises,code,callback){
+	setTimeout(  () => {
+		let devise = findDeviseInArrayByCode(devises,code);
+		if (devise != null) callback(devise);
+		else console.log("erreur/pas trouvé");
+	 } , 2000); //effectuer un traitement 2000ms=2s plus tard
+	                                //pour simuler un traitement long
+}
+
+//en TP , coder findDeviseNonBloquantInArrayByCodePromise(...){}
+//et appeler cela avec .then().then.catch() dans la route .../convert
+
 function removeDeviseInArrayByCode(devises,code){
 	let delIndex;
 	for(let i in devises){
@@ -64,9 +76,11 @@ apiRouter.route('/devise-api/public/devise')
 	}
 });
 
+/*
+//V1 sans appel asynchrone
 //exemple URL: http://localhost:8282/devise-api/public/convert?amount=50&source=EUR&target=USD
 apiRouter.route('/devise-api/public/convert')
-.get( async  function(req , res  , next ) {
+.get(  function(req , res  , next ) {
 	let montant = Number(req.query.amount);
 	let codeDeviseSource = req.query.source;
 	let codeDeviseCible = req.query.target;
@@ -79,6 +93,30 @@ apiRouter.route('/devise-api/public/convert')
 					result : montantConverti});
 		
 });
+*/
+
+
+//V2 : version asynchrone avec callback (des années 2011-2014 environ)
+//exemple URL: http://localhost:8282/devise-api/public/convert?amount=50&source=EUR&target=USD
+apiRouter.route('/devise-api/public/convert')
+.get(  function(req , res  , next ) {
+	let montant = Number(req.query.amount);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.target;
+	//let deviseSource = null ; 
+	findDeviseNonBloquantInArrayByCode(allDevises,codeDeviseSource, function (deviseSource){
+		findDeviseNonBloquantInArrayByCode(allDevises,codeDeviseCible , function (deviseCible){
+			let montantConverti = montant * deviseCible.change / deviseSource.change;
+			res.send ( { amount : montant , 
+						source :codeDeviseSource , 
+						target : codeDeviseCible ,
+						result : montantConverti});
+			});
+		});	
+});
+
+
+
 
 
 // http://localhost:8282/devise-api/private/devise en mode post
@@ -87,8 +125,13 @@ apiRouter.route('/devise-api/private/devise')
 .post( function(req , res  , next ) {
 	let nouvelleDevise = req.body;
 	console.log("POST,nouvelleDevise="+JSON.stringify(nouvelleDevise));
-	allDevises.push(nouvelleDevise);
-	res.send(nouvelleDevise);
+	let deviseExitanteMemecode = findDeviseInArrayByCode(allDevises,nouvelleDevise.code);
+	if(deviseExitanteMemecode!=null)
+	    res.status(409).json({message : "deja une devise avec meme code"})
+	else{
+	   allDevises.push(nouvelleDevise);
+	   res.send(nouvelleDevise);
+     }
 });
 
 // http://localhost:8282/devise-api/private/devise en mode PUT
