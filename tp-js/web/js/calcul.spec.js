@@ -41,9 +41,31 @@ describe("tous les tests", () =>{
        
     });
 
+    describe("tests élementaires" , () =>{
+        it("racine carree de 9 vaut 3",function(){
+            expect(racineCarree(9)).toBe(3);
+        })
+       
+    });
+
     describe("tests sur les séries" , () =>{
 
-        
+        var s ; //Serie à tester
+
+        beforeEach(function () {
+            console.log("beforeEach() appelé sur sous partie tests sur les séries")
+            s = new Serie();
+           });
+
+        it("moyenne de 6, 8,10 égale à 8",function(){
+            s.add(6); s.add(8); s.add(10);
+            expect(s.moyenne()).toBe(8);
+        })
+
+        it("moyenne de 2 et 4 égale à 3",function(){
+            s.add(2); s.add(4); 
+            expect(s.moyenne()).toBe(3);
+        })
 	
     });
 	
