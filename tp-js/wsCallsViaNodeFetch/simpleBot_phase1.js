@@ -96,7 +96,7 @@ async function recupererInfosMeteo(tabVilles){
             const resWs = await myJsonFetch(wsUrl);
             ville.weather_description=resWs.weather[0].description;
             const tempKelvin = resWs.main.temp;
-            ville.temperature= tempKelvin -273,15 ;//conversion degre kelvin en degré celsius
+            ville.temperature= tempKelvin -273.15 ;//conversion degre kelvin en degré celsius
         }
         return tabVilles;//NB: in async function value is return as Promise.resolve
     }catch(ex){
