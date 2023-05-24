@@ -3,7 +3,7 @@
 /* à mettre au début du fichier pour que l'import soit effectif */
 .enEvidence {
   font-weight: bold;
-  color: green !important;
+  color: green ;
 }
 
 ​ p {

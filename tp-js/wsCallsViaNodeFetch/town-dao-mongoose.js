@@ -16,7 +16,7 @@ function initMongooseWithSchemaAndModel () {
    
     mongoose.Connection = thisDb;
       thisSchema = new mongoose.Schema({
-    /* default mongo _id: { type : String , alias : "id" } ,*/
+    /* default mongo _id: { type : ObjectId , alias : "id" } ,*/
         name: String,
         zip: String,
         lat : Number,
@@ -38,16 +38,14 @@ initMongooseWithSchemaAndModel();
 
 function reinit_db(){
   return new Promise( (resolve,reject)=>{
-      const deleteAllFilter = { }
-      ThisPersistentModel.deleteMany( deleteAllFilter, function (err) {
-        if(err) { 
-          console.log(JSON.stringify(err));
-          reject(err);
-        }
-        //insert elements after deleting olds
-        //...
+    const deleteAllFilter = { }
+    ThisPersistentModel.deleteMany( deleteAllFilter)
+                .then(()=>{ //insert elements after deleting olds
+      //....
         resolve({action:"towns collection re-initialized in mongoDB database"})
       })
+      .catch((err)=>{ console.log(JSON.stringify(err)) ; 
+        reject({error : "cannot delete in database" , cause : err}); }  );
   });
 }
 
