@@ -6,6 +6,8 @@ export interface IPerson {
 
 export class Personne{
 
+   // public adresse : string = "12 rue elle 75001 Parici";
+
 
     constructor(public numero:number|undefined = undefined, 
                 public prenom :string ="?" ,

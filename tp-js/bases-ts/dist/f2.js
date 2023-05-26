@@ -1,6 +1,6 @@
 "use strict";
 var jours;
-jours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"];
+jours = ["Lundi", "mardi", "mercredi", "jeudi", "vendredi"];
 jours.push("samedi");
 jours.push("dimanche");
 for (const [i, jour] of jours.entries()) {

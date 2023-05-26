@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Personne = void 0;
 class Personne {
+    // public adresse : string = "12 rue elle 75001 Parici";
     constructor(numero = undefined, prenom = "?", nom = "?", _age = 0) {
         this.numero = numero;
         this.prenom = prenom;
