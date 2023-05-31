@@ -21,7 +21,4 @@ describe("test sur dao devise" , () =>{
     after(async ()=>{
         await PersistentDeviseModel.deleteOne ({ _id : "m2"});
     });
-
-
-
 })
