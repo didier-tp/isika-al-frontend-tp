@@ -29,6 +29,8 @@ export class DeviseComponent implements OnInit {
     this.tabDevises.push(new Devise("USD","Dollar",1.1));
     this.tabDevises.push(new Devise("GBP","Livre",0.9));
     this.tabDevises.push(new Devise("JPY","Yen",120));
+    this.tabDevises.push(new Devise("DDK","Couronne",7.7));
+    this.tabDevises.push(new Devise("xx","xx",1.4));
    }
 
   ngOnInit(): void {

@@ -1,0 +1,9 @@
+{ "/tp/devise-api" : { "secure" : false ,
+    "target" : "https://www.d-defrance.fr" } ,
+   "/user-api" : { "secure" : false ,
+      "target" : "https://www.d-defrance.fr" } ,
+    "/tp/standalone-user-api" : { "secure" : false ,
+      "target" : "https://www.d-defrance.fr" },
+    "/tp/standalone-login-api" : { "secure" : false ,
+      "target" : "https://www.d-defrance.fr" } 
+}

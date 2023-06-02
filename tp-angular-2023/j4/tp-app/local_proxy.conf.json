@@ -1,0 +1,12 @@
+{ "/tp/devise-api" : { "secure" : false ,
+                  "pathRewrite": { "^/tp/devise-api": "/devise-api" } ,
+                  "target" : "http://localhost:8233" } ,
+   "/user-api" : { "secure" : false ,
+                "target" : "http://localhost:8232" } ,
+   "/tp/standalone-user-api" : { "secure" : false ,
+                     "pathRewrite": { "^/tp/standalone-user-api": "/standalone-user-api" } ,
+                      "target" : "http://localhost:8233" },
+    "/tp/standalone-login-api" : { "secure" : false ,
+                     "pathRewrite": { "^/tp/standalone-login-api": "/standalone-login-api" } ,
+                  "target" : "http://localhost:8233" }
+}

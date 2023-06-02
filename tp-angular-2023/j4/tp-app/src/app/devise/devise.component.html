@@ -1,19 +1,16 @@
+<input type="checkbox" [(ngModel)]="deviseService.withoutSecurity" /> withoutSecurity (development only)
 <div class="row">
     <div class="col-sm-5" >
       <div class="card">
-       <div class="card-header text-white bg-primary">Liste des devises</div>
+       <div class="card-header text-white bg-primary">Liste des devises (selon serveur)</div>
        <div class="card-body">
-       <table class="table table-bordered"  style="font-size: 0.7em;">
-           <thead>
-                <tr><th>code</th><th>name</th><th>change</th></tr>
-            </thead>
-            <tbody class="overflow-auto">
-                 <tr *ngFor="let d of tabDevises ; let i=index"
-                    (click)="onSelectDevise(d)"
-                    [class.selected]="d==selectedDevise">
-                      <td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td>
-                </tr>
-            </tbody>
+       <table class="table table-bordered">
+           <tr><th>code</th><th>name</th><th>change</th></tr>
+           <tr *ngFor="let d of tabDevises ; let i=index; trackBy: identifyDevise"
+           (click)="onSelectDevise(d)"
+           [class.selected]="d==selectedDevise">
+            <td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td>
+        </tr>
        </table> <!-- end of table -->
        message: <b>{{message}}</b>
        </div> <!-- end of card-body -->
