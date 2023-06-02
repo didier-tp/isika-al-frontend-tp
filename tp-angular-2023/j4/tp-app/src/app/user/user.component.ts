@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../common/data/user';
 import { UserService } from '../common/service/user.service';
-import { messageFromEx } from '../common/util/util';
+import { messageFromError, messageFromEx } from '../common/util/util';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -16,6 +16,16 @@ export class UserComponent {
   public message :string ="" ;
 
   constructor(public userService : UserService){
+  }
+
+  public  onSaveV1(){
+    //this.message = "user = " + JSON.stringify(this.user);
+    this.userService.postUser$(this.user).subscribe(
+      {
+        next: (savedUser)=>{ this.user = savedUser ;this.message ="user bien enregistré" ;} ,
+        error: (err) => { this.message = messageFromError(err,"erreur ajout");}
+      }
+    )
   }
 
   public async onSave(){
