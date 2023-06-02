@@ -79,4 +79,23 @@ export class ConversionComponent implements OnInit {
       } 
   }
 
+
+  //pour suite TP simple:
+  codeDeviseToUpdate  ="";
+  changeDeviseToUpdate = 0;
+  message ="";
+
+  async onUpdateDevise(){
+    try{
+      let deviseToUpdate=await firstValueFrom(this._deviseService.getDeviseByCode$(this.codeDeviseToUpdate));
+      deviseToUpdate.change= this.changeDeviseToUpdate;
+      this._deviseService.withoutSecurity=true;
+      let updatedDevise = deviseToUpdate=await firstValueFrom(this._deviseService.putDevise$(deviseToUpdate));
+      this.message = "updatedDevise=" + JSON.stringify(updatedDevise);
+  }catch(ex){
+    this.message = "echec update ";
+    console.log(JSON.stringify(ex)); 
+  }
+  }
+
 }

@@ -8,3 +8,8 @@ code devise cible : <select [(ngModel)]="codeDeviseCible" name="codeDevCible">
 </select> <br/>
 <input type="button" (click)="onConvertir()" value="convertir" /> <br/>
 montantConverti = <span id="montantConverti">{{montantConverti}}</span>
+<hr/>
+code devise à mettre à jour:<input [(ngModel)]="codeDeviseToUpdate" name="code" /> <br/>
+nouveau change:<input [(ngModel)]="changeDeviseToUpdate" name="change" /> <br/>
+<button (click)="onUpdateDevise()">update devise</button> <br/>
+message: {{message}}

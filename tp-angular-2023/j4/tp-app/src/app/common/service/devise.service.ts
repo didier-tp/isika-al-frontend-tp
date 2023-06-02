@@ -45,6 +45,12 @@ export class DeviseService {
     return this._http.get<Devise[]>(url);
   }
 
+  public getDeviseByCode$(code:string) : Observable<Devise>{
+    const url = `${this.publicBaseUrl}/devise/${code}`;
+    console.log( "url = " + url);
+    return this._http.get<Devise>(url);
+  }
+
   public convertir$(montant: number,
                    codeDeviseSrc : string, 
                    codeDeviseTarget : string
